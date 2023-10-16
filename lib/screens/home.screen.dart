@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projects/widgets/UI/app_button.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -10,12 +11,9 @@ class HomeScreen extends StatelessWidget {
         title: const Text('Home'),
       ),
       body: const Center(
-        child: Text(
-          'Aqui é a home',
-          style: TextStyle(
-            fontSize: 24.0,
-            fontWeight: FontWeight.bold,
-          ),
+        child: AppButton(
+          'Fazer login',
+          routeName: "/login",
         ),
       ),
     );

@@ -20,11 +20,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/login',
+      initialRoute: '/gallery',
       routes: {
         '/': (context) => const IsNotAuthenticatedRoute(HomeScreen()),
         '/login': (context) => const IsNotAuthenticatedRoute(LoginScreen()),
-        '/gallery': (context) => IsAuthenticatedRoute(GalleryScreen()),
+        '/gallery': (context) => const IsAuthenticatedRoute(GalleryScreen()),
       }
     );
   }

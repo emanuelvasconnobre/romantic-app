@@ -13,7 +13,7 @@ class IsNotAuthenticatedRoute extends StatelessWidget {
 
   Widget _fallBack(BuildContext context) {
     Future.microtask(() {
-      Navigator.pushReplacementNamed(context, '/');
+      Navigator.pushReplacementNamed(context, '/gallery');
     });
     return Container();
   }
