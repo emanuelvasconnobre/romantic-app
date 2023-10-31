@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:projects/bloc/auth_bloc.dart';
 import 'package:projects/provider/auth.provider.dart';
 import 'package:projects/validation/composite.validation.dart';
 import 'package:projects/validation/form/email.validation.dart';
@@ -21,10 +23,8 @@ class _LoginScreenState extends State<LoginScreen> {
   String? _validateEmail(String? value) {
     const fieldName = "email";
 
-    var composite = CompositeValidation([
-      IsNotEmptyValidation(fieldName),
-      EmailValidation()
-    ]);
+    var composite = CompositeValidation(
+        [IsNotEmptyValidation(fieldName), EmailValidation()]);
 
     var validationResult = composite.validate(value);
 
@@ -56,9 +56,13 @@ class _LoginScreenState extends State<LoginScreen> {
       final email = emailController.text;
       final password = passwordController.text;
 
-      Provider.of<AuthProvider>(context, listen: false).login();
+      final bloc = BlocProvider.of<AuthBloc>(context);
 
-      Navigator.pushReplacementNamed(context, '/gallery');
+      bloc.logIn(email, password);
+
+      if (bloc.isLoggedIn) {
+        Navigator.pushReplacementNamed(context, '/gallery');
+      }
     }
   }
 

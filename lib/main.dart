@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:projects/provider/auth.provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:projects/bloc/auth_bloc.dart';
+import 'package:projects/bloc/gallery_bloc.dart';
 import 'package:projects/routes/is_authenticated.route.dart';
 import 'package:projects/routes/is_not_authenticated.route.dart';
 import 'package:projects/screens/gallery.screen.dart';
 import 'package:projects/screens/home.screen.dart';
 import 'package:projects/screens/login.screen.dart';
-import 'package:provider/provider.dart';
 
 void main() {
-  runApp(ChangeNotifierProvider(
-    create: (context) => AuthProvider(),
-    child: const MyApp(),
-  ),);
+  runApp(
+    BlocProvider(
+      create: (context) => AuthBloc(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -19,13 +22,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      initialRoute: '/login',
-      routes: {
-        '/': (context) => const IsNotAuthenticatedRoute(HomeScreen()),
-        '/login': (context) => const IsNotAuthenticatedRoute(LoginScreen()),
-        '/gallery': (context) => const IsAuthenticatedRoute(GalleryScreen()),
-      }
-    );
+    return MaterialApp(initialRoute: '/login', routes: {
+      '/': (context) => const IsNotAuthenticatedRoute(HomeScreen()),
+      '/login': (context) => const IsNotAuthenticatedRoute(LoginScreen()),
+      '/gallery': (context) => IsAuthenticatedRoute(BlocProvider(
+          create: (context) => GalleryBloc(), child: GalleryScreen())),
+    });
   }
 }
