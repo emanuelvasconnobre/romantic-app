@@ -24,41 +24,35 @@ class GalleryScreen extends StatelessWidget {
     final bloc = BlocProvider.of<GalleryBloc>(context);
 
     _scrollController.addListener(() {
-      if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
         bloc.addPage();
       }
     });
 
-    return Scaffold(
-        appBar: AppBar(
-          title: const Text('Galeria'),
-        ),
-        body: GalleryBlocBuilder(
-          context: context,
-          builder: (context, state) {
-            return GridView.builder(
-              controller: _scrollController,
-              padding: const EdgeInsets.all(8.0),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  crossAxisSpacing: 8.0,
-                  mainAxisSpacing: 8.0),
-              itemCount: state.photos.length,
-              itemBuilder: (BuildContext buildContext, int index) {
-                return InkWell(
-                  onTap: () {
-                    _showDescription(context, index);
-                  },
-                  child: GridTile(
-                    child: Image.network(
-                      state.photos[index].photo.imageUrl,
-                      fit: BoxFit.cover,
-                    ),
+    return GalleryBlocBuilder(
+        context: context,
+        builder: (context, state) {
+          return GridView.builder(
+            controller: _scrollController,
+            padding: const EdgeInsets.all(8.0),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3, crossAxisSpacing: 8.0, mainAxisSpacing: 8.0),
+            itemCount: state.photos.length,
+            itemBuilder: (BuildContext buildContext, int index) {
+              return InkWell(
+                onTap: () {
+                  _showDescription(context, index);
+                },
+                child: GridTile(
+                  child: Image.network(
+                    state.photos[index].photo.imageUrl,
+                    fit: BoxFit.cover,
                   ),
-                );
-              },
-            );
-          },
-        ));
+                ),
+              );
+            },
+          );
+        });
   }
 }
