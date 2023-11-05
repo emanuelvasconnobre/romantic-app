@@ -1,4 +1,4 @@
-class UpdateOneDatasourceInput {
+class CreateOneDatasourceInput {
   final String imageUrl;
   final String description;
   final String originalName;
@@ -6,7 +6,7 @@ class UpdateOneDatasourceInput {
   final DateTime uploadAt;
   final double size;
 
-  UpdateOneDatasourceInput(
+  CreateOneDatasourceInput(
       {required this.imageUrl,
       required this.description,
       required this.originalName,

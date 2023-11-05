@@ -24,22 +24,29 @@ class ResultMessage {
   final String message;
   final ResultMessageType type;
 
-  ResultMessage({required this.title, required this.message, required this.type});
+  ResultMessage(
+      {required this.title, required this.message, required this.type});
 }
 
-abstract class Result {
+abstract class Result<D> {
   final AppException? exception;
   final ResultMessage message;
   final DateTime createdAt;
+  final D? data;
 
-  Result({required this.message, this.exception}) : createdAt = DateTime.now();
+  Result({required this.message, this.data, this.exception})
+      : createdAt = DateTime.now();
 }
 
-class Success extends Result {
-  Success({ResultMessage? message})
-      : super(message: message ??
-            ResultMessage(title: "Sucesso!", message: "Operação realizada com sucesso.",
-                type: ResultMessageType.success));
+class Success<D> extends Result<D> {
+  Success({ResultMessage? message, required D data})
+      : super(
+            message: message ??
+                ResultMessage(
+                    title: "Sucesso!",
+                    message: "Operação realizada com sucesso.",
+                    type: ResultMessageType.success),
+            data: data);
 }
 
 class Failure extends Result {
