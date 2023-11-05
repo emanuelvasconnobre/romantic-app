@@ -14,6 +14,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class LoginScreenState extends State<LoginScreen> {
+  late bool _isLoading = false;
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -49,14 +51,22 @@ class LoginScreenState extends State<LoginScreen> {
     return null;
   }
 
-  void _onSubmitHandler(BuildContext context) {
+  void _onSubmitHandler(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
+      setState(() {
+        _isLoading = true;
+      });
+
       final email = emailController.text;
       final password = passwordController.text;
 
       final bloc = BlocProvider.of<AuthBloc>(context);
 
-      bloc.logIn(email, password);
+      await bloc.logIn(email, password);
+
+      setState(() {
+        _isLoading = false;
+      });
 
       if (bloc.isLoggedIn) {
         Navigator.pushReplacementNamed(context, '/gallery');
@@ -90,11 +100,19 @@ class LoginScreenState extends State<LoginScreen> {
                 decoration: const InputDecoration(labelText: 'Senha'),
               ),
               const SizedBox(height: 16.0),
-              ElevatedButton(
-                onPressed: () {
-                  _onSubmitHandler(context);
-                },
-                child: const Text('Login'),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  if (_isLoading)
+                    const CircularProgressIndicator(),
+                  const SizedBox(width: 20),
+                  ElevatedButton(
+                    onPressed: () {
+                      _onSubmitHandler(context);
+                    },
+                    child: const Text('Enviar'),
+                  ),
+                ],
               ),
             ],
           ),

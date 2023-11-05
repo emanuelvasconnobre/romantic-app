@@ -49,7 +49,7 @@ class Success<D> extends Result<D> {
             data: data);
 }
 
-class Failure extends Result {
+class Failure<D> extends Result<D> {
   Failure(AppException exception)
       : super(message: exception.getResultMessage(), exception: exception);
 }
