@@ -2,13 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:projects/bloc/gallery_bloc.dart';
 import 'package:projects/screens/view-photo.screen.dart';
+import 'package:projects/widgets/gallery/gallery_image.dart';
 
-class GalleryScreen extends StatelessWidget {
-  GalleryScreen({super.key});
+class GalleryScreen extends StatefulWidget {
+  const GalleryScreen({super.key});
 
+  @override
+  State<GalleryScreen> createState() => _GalleryScreenState();
+}
+
+class _GalleryScreenState extends State<GalleryScreen> {
   final ScrollController _scrollController = ScrollController();
 
-  void _showDescription(BuildContext context, int index) {
+  void _showPhotoDetails(BuildContext context, int index) {
     showModalBottomSheet(
       isScrollControlled: true,
       context: context,
@@ -42,12 +48,11 @@ class GalleryScreen extends StatelessWidget {
             itemBuilder: (BuildContext buildContext, int index) {
               return InkWell(
                 onTap: () {
-                  _showDescription(context, index);
+                  _showPhotoDetails(context, index);
                 },
                 child: GridTile(
-                  child: Image.network(
-                    state.photos[index].photo.imageUrl,
-                    fit: BoxFit.cover,
+                  child: GalleryImage(
+                    localPhoto: state.photos[index],
                   ),
                 ),
               );

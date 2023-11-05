@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projects/screens/gallery.screen.dart';
+import 'package:projects/screens/upload_image_screen.dart';
 
 class GalleryPage extends StatelessWidget {
   const GalleryPage({super.key});
@@ -12,12 +13,10 @@ class GalleryPage extends StatelessWidget {
           appBar: AppBar(
             title: const Text('Romantic App'),
           ),
-          body: TabBarView(
+          body: const TabBarView(
             children: [
               GalleryScreen(),
-              const Center(
-                child: Text('Image Tab Content'),
-              ),
+              UploadImageScreen(),
             ],
           ),
           bottomNavigationBar: Container(
