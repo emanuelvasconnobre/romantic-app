@@ -15,6 +15,7 @@ class LoginScreen extends StatefulWidget {
 
 class LoginScreenState extends State<LoginScreen> {
   late bool _isLoading = false;
+  late bool _isLoggedIn = false;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
@@ -65,17 +66,22 @@ class LoginScreenState extends State<LoginScreen> {
       await bloc.logIn(email, password);
 
       setState(() {
-        _isLoading = false;
+        if (bloc.isLoggedIn) {
+          setState(() {
+            _isLoggedIn = true;
+            _isLoading = false;
+          });
+        }
       });
-
-      if (bloc.isLoggedIn) {
-        Navigator.pushReplacementNamed(context, '/gallery');
-      }
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    if (_isLoggedIn) {
+      Navigator.pushReplacementNamed(context, '/gallery');
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Login'),
@@ -103,8 +109,7 @@ class LoginScreenState extends State<LoginScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  if (_isLoading)
-                    const CircularProgressIndicator(),
+                  if (_isLoading) const CircularProgressIndicator(),
                   const SizedBox(width: 20),
                   ElevatedButton(
                     onPressed: () {

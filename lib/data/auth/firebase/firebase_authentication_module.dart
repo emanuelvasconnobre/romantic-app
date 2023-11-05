@@ -19,16 +19,17 @@ class FirebaseAuthenticationModule implements AuthenticationModule {
       User user = result.user!;
 
       return CredentialData(
-        user: UserEntity(
-          userName: user.displayName ?? "Perfil Anônimo",
-          email: user.email!,
-          uid: user.uid,
-          profilePictureUrl: user.photoURL ?? ""
-        )
-      );
+          user: UserEntity(
+              userName: user.displayName ?? "Perfil Anônimo",
+              email: user.email!,
+              uid: user.uid,
+              profilePictureUrl: user.photoURL ?? ""),
+          auth: AuthData(authOptions: {
+            "firebase": true,
+          }));
     } on AppException {
       rethrow;
-    } on FirebaseAuthException catch(e) {
+    } on FirebaseAuthException catch (e) {
       switch (e.code) {
         case "INVALID_LOGIN_CREDENTIALS":
           throw LoginCredentialsMismatchException();
@@ -58,5 +59,4 @@ class FirebaseAuthenticationModule implements AuthenticationModule {
       throw UnexpectedException();
     }
   }
-
 }
