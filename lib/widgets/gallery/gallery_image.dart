@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projects/bloc/protocols/local_photo.dart';
+import 'package:projects/widgets/UI/live_container_loading.dart';
 
 class GalleryImage extends StatefulWidget {
   final LocalPhoto localPhoto;
@@ -28,12 +29,12 @@ class _GalleryImageState extends State<GalleryImage> {
               return child;
             } else {
               _loading = true;
-              return const CircularProgressIndicator();
+              return const LiveContainerLoading();
             }
           },
         ),
         if (_loading)
-          const CircularProgressIndicator(),
+          const LiveContainerLoading(),
       ],
     );
   }
