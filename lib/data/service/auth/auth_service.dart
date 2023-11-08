@@ -20,4 +20,16 @@ class AuthService {
       return Failure(UnexpectedException());
     }
   }
+
+  Future<Result<void>> logOut() async {
+    try {
+      await authenticationModule.logOut();
+
+      return Success(data: null);
+    } on AppException catch (e) {
+      return Failure(e);
+    } catch (e) {
+      return Failure(UnexpectedException());
+    }
+  }
 }

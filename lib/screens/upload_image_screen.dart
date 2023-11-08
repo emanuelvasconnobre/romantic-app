@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class UploadImageScreen extends StatefulWidget {
-  const UploadImageScreen({super.key});
+  final GlobalKey<NavigatorState> navigatorKey;
+
+  const UploadImageScreen({required this.navigatorKey, super.key});
 
   @override
   State<UploadImageScreen> createState() => _UploadImageScreenState();
@@ -24,10 +26,6 @@ class _UploadImageScreenState extends State<UploadImageScreen> {
     setState(() {
       if (pickedFile != null) {
         _image = File(pickedFile.path);
-      } else {
-        if (kDebugMode) {
-          print('Nenhuma imagem selecionada.');
-        }
       }
     });
   }
@@ -41,9 +39,9 @@ class _UploadImageScreenState extends State<UploadImageScreen> {
       Future.delayed(const Duration(seconds: 3), () {
         if (_formKey.currentState!.validate() && _image != null) {
           String description = _descriptionController.text;
+
           if (kDebugMode) {
-            print('Descrição: $description');
-            print('Imagem selecionada: ${_image!.path}');
+            print(description);
           }
         }
         setState(() {
@@ -93,8 +91,7 @@ class _UploadImageScreenState extends State<UploadImageScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                if (_isLoading)
-                  const CircularProgressIndicator(),
+                if (_isLoading) const CircularProgressIndicator(),
                 const SizedBox(width: 20),
                 ElevatedButton(
                   onPressed: _submitForm,

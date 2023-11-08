@@ -19,21 +19,27 @@ void main() async {
   runApp(
     BlocProvider(
       create: (context) => AuthBloc(),
-      child: const MyApp(),
+      child: MyApp(),
     ),
   );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final GlobalKey<NavigatorState> appNavigatorKey = GlobalKey<NavigatorState>();
+
+  MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(initialRoute: '/login', routes: {
-      '/': (context) => const IsNotAuthenticatedRoute(HomeScreen()),
-      '/login': (context) => const IsNotAuthenticatedRoute(LoginScreen()),
-      '/gallery': (context) => IsAuthenticatedRoute(BlocProvider(
-          create: (context) => GalleryBloc(), child: const GalleryPage())),
-    });
+    return MaterialApp(
+        initialRoute: '/login',
+        navigatorKey: appNavigatorKey,
+        routes: {
+          '/': (context) => const IsNotAuthenticatedRoute(HomeScreen()),
+          '/login': (context) => IsNotAuthenticatedRoute(
+              LoginScreen(navigatorKey: appNavigatorKey)),
+          '/gallery': (context) => IsAuthenticatedRoute(BlocProvider(
+              create: (context) => GalleryBloc(), child: GalleryPage(navigatorKey: appNavigatorKey))),
+        });
   }
 }

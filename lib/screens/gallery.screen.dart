@@ -5,7 +5,9 @@ import 'package:projects/screens/view-photo.screen.dart';
 import 'package:projects/widgets/gallery/gallery_image.dart';
 
 class GalleryScreen extends StatefulWidget {
-  const GalleryScreen({super.key});
+  final GlobalKey<NavigatorState> navigatorKey;
+
+  const GalleryScreen({required this.navigatorKey, super.key});
 
   @override
   State<GalleryScreen> createState() => _GalleryScreenState();

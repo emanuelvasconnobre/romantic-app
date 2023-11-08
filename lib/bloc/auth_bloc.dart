@@ -29,12 +29,36 @@ class AuthBloc extends Cubit<AuthBlocState> {
           backgroundColor: Colors.red, // Cor de fundo do Toast
           textColor: Colors.white, // Cor do texto do Toast
           fontSize: 16.0 // Tamanho da fonte do texto do Toast
-      );
+          );
     }
   }
 
   Future<void> logOut() async {
-    emit(AuthBlocState(user: null, auth: null));
+    Result result = await authService.logOut();
+
+    if (result is Success) {
+      emit(AuthBlocState(user: null, auth: null));
+
+      Fluttertoast.showToast(
+          msg: result.message.message,
+          toastLength: Toast.LENGTH_SHORT, // Duração do Toast
+          gravity: ToastGravity.BOTTOM, // Posição do Toast na tela
+          timeInSecForIosWeb: 1, // Duração específica para iOS
+          backgroundColor: Colors.green, // Cor de fundo do Toast
+          textColor: Colors.white, // Cor do texto do Toast
+          fontSize: 16.0 // Tamanho da fonte do texto do Toast
+          );
+    } else {
+      Fluttertoast.showToast(
+          msg: result.message.message,
+          toastLength: Toast.LENGTH_SHORT, // Duração do Toast
+          gravity: ToastGravity.BOTTOM, // Posição do Toast na tela
+          timeInSecForIosWeb: 1, // Duração específica para iOS
+          backgroundColor: Colors.red, // Cor de fundo do Toast
+          textColor: Colors.white, // Cor do texto do Toast
+          fontSize: 16.0 // Tamanho da fonte do texto do Toast
+          );
+    }
   }
 
   bool get isLoggedIn => state.auth != null && state.user != null;

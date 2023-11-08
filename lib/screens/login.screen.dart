@@ -7,7 +7,9 @@ import 'package:projects/validation/form/is_not_empty.validation.dart';
 import 'package:projects/validation/form/min_length.validation.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+  final GlobalKey<NavigatorState> navigatorKey;
+
+  const LoginScreen({required this.navigatorKey, super.key});
 
   @override
   LoginScreenState createState() => LoginScreenState();
@@ -15,7 +17,8 @@ class LoginScreen extends StatefulWidget {
 
 class LoginScreenState extends State<LoginScreen> {
   late bool _isLoading = false;
-  late bool _isLoggedIn = false;
+
+  AuthBloc? _authBloc;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
@@ -61,30 +64,32 @@ class LoginScreenState extends State<LoginScreen> {
       final email = emailController.text;
       final password = passwordController.text;
 
-      final bloc = BlocProvider.of<AuthBloc>(context);
+      await _authBloc?.logIn(email, password);
 
-      await bloc.logIn(email, password);
+      if (_authBloc != null && _authBloc!.isLoggedIn) {
+        widget.navigatorKey.currentState?.pushNamed('/gallery');
+      }
 
       setState(() {
-        if (bloc.isLoggedIn) {
-          setState(() {
-            _isLoggedIn = true;
-            _isLoading = false;
-          });
-        }
+        _isLoading = false;
       });
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    if (_isLoggedIn) {
-      Navigator.pushReplacementNamed(context, '/gallery');
-    }
+    _authBloc ??= BlocProvider.of<AuthBloc>(context);
 
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: const Text('Login'),
+        leading: IconButton(
+          icon: const Icon(Icons.home), // Customize the icon as needed
+          onPressed: () {
+            widget.navigatorKey.currentState?.pushNamed('/');
+          },
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:projects/bloc/gallery_bloc.dart';
@@ -58,9 +57,9 @@ class ViewPhotoScreen extends StatelessWidget {
                         controller: _controller,
                         itemCount: state.photos.length,
                         onPageChanged: (int currentPage) {
-                            if (state.photos.length - currentPage == 1) {
-                              galleryBloc.addPage();
-                            }
+                          if (state.photos.length - currentPage == 1) {
+                            galleryBloc.addPage();
+                          }
                         },
                         itemBuilder: (BuildContext context, int index) {
                           return Image.network(
@@ -86,10 +85,7 @@ class ViewPhotoScreen extends StatelessWidget {
                             galleryBloc.state.photos[currentIndex].photo;
 
                         _showDetails(context, currentPhoto);
-                        if (kDebugMode) {
-                          print(currentPhoto);
-
-                        }},
+                      },
                       icon: const Icon(Icons.info),
                     ),
                     const Text(

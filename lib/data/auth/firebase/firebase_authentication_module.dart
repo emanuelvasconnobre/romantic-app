@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:projects/data/auth/protocols/authentication/authentication_module.dart';
 import 'package:projects/data/auth/protocols/authentication/protocols/credential_data.dart';
 import 'package:projects/data/datasource/protocols/entities/user_entity.dart';
@@ -37,9 +36,6 @@ class FirebaseAuthenticationModule implements AuthenticationModule {
 
       throw UnexpectedException();
     } catch (e) {
-      if (kDebugMode) {
-        print(e.toString());
-      }
 
       throw UnexpectedException();
     }
@@ -49,13 +45,7 @@ class FirebaseAuthenticationModule implements AuthenticationModule {
   Future<void> logOut() async {
     try {
       await _auth.signOut();
-    } on AppException {
-      rethrow;
     } catch (e) {
-      if (kDebugMode) {
-        print(e.toString());
-      }
-
       throw UnexpectedException();
     }
   }
