@@ -32,7 +32,6 @@ class GalleryPage extends StatelessWidget {
                 onPressed: () async {
                   await authBloc.logOut();
 
-                  print(authBloc.isLoggedIn);
                   if (!authBloc.isLoggedIn) {
                     navigatorKey.currentState?.pushNamed('/');
                   }

@@ -19,22 +19,24 @@ class _GalleryImageState extends State<GalleryImage> {
     return Stack(
       alignment: Alignment.center,
       children: [
-        Image.network(
-          widget.localPhoto.photo.imageUrl,
-          fit: BoxFit.cover,
-          loadingBuilder: (BuildContext context, Widget child,
-              ImageChunkEvent? loadingProgress) {
-            if (loadingProgress == null) {
-              _loading = false;
-              return child;
-            } else {
-              _loading = true;
-              return const LiveContainerLoading();
-            }
-          },
-        ),
-        if (_loading)
-          const LiveContainerLoading(),
+        if (_loading) const LiveContainerLoading(),
+        if (!_loading)
+          Image.network(
+            widget.localPhoto.photo.imageUrl,
+            fit: BoxFit.cover,
+            height: double.infinity,
+            width: double.infinity,
+            loadingBuilder: (BuildContext context, Widget child,
+                ImageChunkEvent? loadingProgress) {
+              if (loadingProgress == null) {
+                _loading = false;
+                return child;
+              } else {
+                _loading = true;
+                return const LiveContainerLoading();
+              }
+            },
+          ),
       ],
     );
   }
