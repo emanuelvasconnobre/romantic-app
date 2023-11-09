@@ -11,7 +11,7 @@ class AuthBlocState extends CredentialData {
 }
 
 class AuthBloc extends Cubit<AuthBlocState> {
-  final AuthService authService = AuthServiceFactory.getInstanceFromFirebase();
+  final AuthService authService = AuthServiceFactory.getInstance();
 
   AuthBloc() : super(AuthBlocState());
 
