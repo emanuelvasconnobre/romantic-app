@@ -5,6 +5,7 @@ class CreateOneDatasourceInput {
   final String fileName;
   final DateTime uploadAt;
   final double size;
+  final String userId;
 
   CreateOneDatasourceInput(
       {required this.imageUrl,
@@ -12,5 +13,6 @@ class CreateOneDatasourceInput {
       required this.originalName,
       required this.fileName,
       required this.uploadAt,
-      required this.size});
+      required this.size,
+      required this.userId});
 }

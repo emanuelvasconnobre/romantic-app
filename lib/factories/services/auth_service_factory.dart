@@ -6,7 +6,7 @@ class AuthServiceFactory {
   static AuthService? authServiceInstance;
 
   static AuthService getInstance() {
-    return AuthServiceFactory.getInstanceFromDummy();
+    return AuthServiceFactory.getInstanceFromFirebase();
   }
 
   static AuthService getInstanceFromFirebase() {

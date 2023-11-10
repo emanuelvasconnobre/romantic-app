@@ -1,101 +1,82 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:projects/bloc/protocols/local_photo.dart';
 import 'package:projects/data/datasource/protocols/entities/photo_entity.dart';
+import 'package:projects/data/service/photo/photo_service.dart';
+import 'package:projects/data/service/photo/protocols/create_one_service_input.dart';
+import 'package:projects/factories/services/photo_service_factory.dart';
+import 'package:projects/utils/result_helper/result.dart';
+
+GalleryBloc getGalleryBloc(BuildContext context) {
+  return BlocProvider.of(context);
+}
 
 class GalleryBlocState {
-  final List<LocalPhoto> photos;
+  final List<PhotoEntity> photos;
   final int page;
   final int countPerPage = 8;
+  final int countPage;
 
-  GalleryBlocState(this.photos, this.page);
+  GalleryBlocState(
+      {required this.photos, required this.page, required this.countPage});
 }
 
-class AddOneEvent {
-  final LocalPhoto newEntity;
-
-  AddOneEvent(this.newEntity);
-}
-
-class RemoveOneEvent {
-  final String id;
-
-  RemoveOneEvent(this.id);
-}
-
-// TODO: change for async methods.
 class GalleryBloc extends Cubit<GalleryBlocState> {
-  GalleryBloc() : super(GalleryBlocState([], 1)) {
+  final PhotoService _photoService = PhotoServiceFactory.getInstance();
+
+  GalleryBloc() : super(GalleryBlocState(photos: [], page: 1, countPage: 1)) {
     initializer();
   }
 
-  void initializer() {
-    final id = "${state.photos.length + 1}";
+  void initializer() async {
+    var result = await _photoService.getList();
 
-    emit(GalleryBlocState([
-      LocalPhoto(
-          int.parse(id),
-          PhotoEntity(
-              id,
-              "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Senna_27.jpg",
-              "description $id",
-              "originalName",
-              "fileName",
-              DateTime.now(),
-              22.0,
-              "userId"))
-    ], state.page));
+    if (result is Success) {
+      emit(GalleryBlocState(
+          photos: result.data!.items,
+          page: 1,
+          countPage: result.data!.countPage));
+    }
   }
 
-  void addPage() {
+  addPage() async {
     final page = state.page + 1;
-    final id = "${state.photos.length + 1}";
 
-    emit(GalleryBlocState([
-      ...state.photos,
-      ...[
-        LocalPhoto(
-            int.parse(id),
-            PhotoEntity(
-                id,
-                "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Senna_27.jpg",
-                "description $id",
-                "originalName",
-                "fileName",
-                DateTime.now(),
-                22.0,
-                "userId")),
-      ]
-    ], page));
+    var result = await _photoService.getList(
+        page: page, countPerPage: state.countPerPage);
+
+    if (result is Success) {
+      emit(GalleryBlocState(
+          page: page,
+          countPage: result.data!.countPage,
+          photos: [...state.photos, ...result.data!.items]));
+    }
   }
 
-  // TODO: define the input data.
-  void addOnePhoto() {
-    var id = "${state.photos.length + 1}";
+  addOnePhoto(CreateOneServiceInput input) async {
+    var result = await _photoService.createOne(input);
 
-    final dummyPhoto = LocalPhoto(
-        int.parse(id),
-        PhotoEntity(
-            id,
-            "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Senna_27.jpg",
-            "description $id",
-            "originalName",
-            "fileName",
-            DateTime.now(),
-            22.0,
-            "userId"));
-
-    List<LocalPhoto> updatedList = List.from(state.photos)..add(dummyPhoto);
-
-    emit(GalleryBlocState(updatedList, state.page + 1));
+    if (result is Success) {
+      emit(GalleryBlocState(
+          photos: [...state.photos, result.data!],
+          countPage: state.countPage,
+          page: state.page));
+    }
   }
 
-  void removeOnePhoto(String id) {
+  removeOnePhoto(String id) async {
     final targetList = state.photos;
 
-    targetList.removeWhere((element) => element.photo.id == id);
+    var result = await _photoService.deleteOne(id);
 
-    emit(GalleryBlocState(targetList, state.page));
+    if (result is Success) {
+      targetList.removeWhere((element) => element.id == id);
+
+      emit(GalleryBlocState(
+        photos: targetList,
+        page: state.page,
+        countPage: state.countPage,
+      ));
+    }
   }
 }
 

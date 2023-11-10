@@ -3,14 +3,15 @@ import 'dart:io';
 class FileStoraged {
   final String imageUrl;
   final String fileName;
+  final String originalName;
+  final double size;
+  final DateTime uploadAt = DateTime.now();
 
-  FileStoraged({required this.imageUrl, required this.fileName});
+  FileStoraged({required this.imageUrl, required this.fileName, required this.originalName, required this.size});
 }
 
 abstract class ObjectStorage {
-  Future<FileStoraged> uploadOne(File file, {String? fileName}) async {
-    return FileStoraged(imageUrl: "imageUrl", fileName: "fileName");
-  }
+  Future<FileStoraged> uploadOne(File file, {String? fileName});
 
   Future<void> deleteOne(String fileName);
 }

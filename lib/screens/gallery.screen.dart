@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:projects/bloc/gallery_bloc.dart';
 import 'package:projects/screens/view-photo.screen.dart';
 import 'package:projects/widgets/gallery/gallery_image.dart';
@@ -7,7 +6,9 @@ import 'package:projects/widgets/gallery/gallery_image.dart';
 class GalleryScreen extends StatefulWidget {
   final GlobalKey<NavigatorState> navigatorKey;
 
-  const GalleryScreen({required this.navigatorKey, super.key});
+  final BuildContext parentContext;
+
+  const GalleryScreen({required this.navigatorKey, required this.parentContext, super.key});
 
   @override
   State<GalleryScreen> createState() => _GalleryScreenState();
@@ -29,7 +30,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final bloc = BlocProvider.of<GalleryBloc>(context);
+    final bloc = getGalleryBloc(widget.parentContext);
 
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
@@ -54,7 +55,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
                 },
                 child: GridTile(
                   child: GalleryImage(
-                    localPhoto: state.photos[index],
+                    photo: state.photos[index],
                   ),
                 ),
               );

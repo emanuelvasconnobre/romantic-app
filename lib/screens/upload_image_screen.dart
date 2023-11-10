@@ -1,12 +1,16 @@
 import 'dart:io';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:projects/bloc/auth_bloc.dart';
+import 'package:projects/bloc/gallery_bloc.dart';
+import 'package:projects/data/service/photo/protocols/create_one_service_input.dart';
 
 class UploadImageScreen extends StatefulWidget {
   final GlobalKey<NavigatorState> navigatorKey;
+  final BuildContext parentContext;
 
-  const UploadImageScreen({required this.navigatorKey, super.key});
+  const UploadImageScreen(
+      {required this.navigatorKey, required this.parentContext, super.key});
 
   @override
   State<UploadImageScreen> createState() => _UploadImageScreenState();
@@ -14,6 +18,9 @@ class UploadImageScreen extends StatefulWidget {
 
 class _UploadImageScreenState extends State<UploadImageScreen> {
   late bool _isLoading = false;
+
+  late GalleryBloc _galleryBloc;
+  late AuthBloc _authBloc;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   File? _image;
@@ -30,27 +37,33 @@ class _UploadImageScreenState extends State<UploadImageScreen> {
     });
   }
 
-  void _submitForm() {
+  void _submitForm() async {
     if (_formKey.currentState!.validate()) {
       setState(() {
         _isLoading = true;
       });
-      // Simulando um envio de dados com um atraso de 3 segundos
-      Future.delayed(const Duration(seconds: 3), () {
-        if (_formKey.currentState!.validate() && _image != null) {
-          String description = _descriptionController.text;
+      if (_formKey.currentState!.validate() && _image != null) {
+        String description = _descriptionController.text;
 
-          if (kDebugMode) {
-            print(description);
-          }
-        }
+        await _galleryBloc.addOnePhoto(CreateOneServiceInput(
+            image: _image!,
+            description: description,
+            userId: _authBloc.state.user!.uid));
+
         setState(() {
           _isLoading = false;
           _descriptionController.clear();
           _image = null;
         });
-      });
+      }
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _galleryBloc = getGalleryBloc(widget.parentContext);
+    _authBloc = getAuthBloc(widget.parentContext);
   }
 
   @override

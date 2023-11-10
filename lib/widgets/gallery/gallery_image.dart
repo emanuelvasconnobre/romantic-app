@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:projects/bloc/protocols/local_photo.dart';
+import 'package:projects/data/datasource/protocols/entities/photo_entity.dart';
 import 'package:projects/widgets/UI/live_container_loading.dart';
 
 class GalleryImage extends StatefulWidget {
-  final LocalPhoto localPhoto;
+  final PhotoEntity photo;
 
-  const GalleryImage({required this.localPhoto, super.key});
+  const GalleryImage({required this.photo, super.key});
 
   @override
   State<GalleryImage> createState() => _GalleryImageState();
@@ -22,7 +22,7 @@ class _GalleryImageState extends State<GalleryImage> {
         if (_loading) const LiveContainerLoading(),
         if (!_loading)
           Image.network(
-            widget.localPhoto.photo.imageUrl,
+            widget.photo.imageUrl,
             fit: BoxFit.cover,
             height: double.infinity,
             width: double.infinity,

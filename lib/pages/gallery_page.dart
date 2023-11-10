@@ -41,8 +41,9 @@ class GalleryPage extends StatelessWidget {
           ),
           body: TabBarView(
             children: [
-              GalleryScreen(navigatorKey: navigatorKey,),
-              UploadImageScreen(navigatorKey: navigatorKey),
+              GalleryScreen(navigatorKey: navigatorKey, parentContext: context),
+              UploadImageScreen(
+                  navigatorKey: navigatorKey, parentContext: context),
             ],
           ),
           bottomNavigationBar: Container(

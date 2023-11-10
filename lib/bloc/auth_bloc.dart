@@ -6,6 +6,10 @@ import 'package:projects/data/service/auth/auth_service.dart';
 import 'package:projects/factories/services/auth_service_factory.dart';
 import 'package:projects/utils/result_helper/result.dart';
 
+AuthBloc getAuthBloc(BuildContext context) {
+  return BlocProvider.of(context);
+}
+
 class AuthBlocState extends CredentialData {
   AuthBlocState({super.auth, super.user});
 }

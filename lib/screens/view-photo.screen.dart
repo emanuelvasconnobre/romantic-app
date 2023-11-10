@@ -63,7 +63,7 @@ class ViewPhotoScreen extends StatelessWidget {
                         },
                         itemBuilder: (BuildContext context, int index) {
                           return Image.network(
-                            state.photos[index].photo.imageUrl,
+                            state.photos[index].imageUrl,
                             fit: BoxFit.contain,
                           );
                         });
@@ -82,7 +82,7 @@ class ViewPhotoScreen extends StatelessWidget {
                         int currentIndex = _controller.page!.round();
 
                         PhotoEntity currentPhoto =
-                            galleryBloc.state.photos[currentIndex].photo;
+                            galleryBloc.state.photos[currentIndex];
 
                         _showDetails(context, currentPhoto);
                       },
@@ -99,12 +99,12 @@ class ViewPhotoScreen extends StatelessWidget {
                 Column(
                   children: [
                     IconButton(
-                      onPressed: () {
+                      onPressed: () async {
                         int currentIndex = _controller.page!.round();
 
                         String id =
-                            galleryBloc.state.photos[currentIndex].photo.id;
-                        galleryBloc.removeOnePhoto(id);
+                            galleryBloc.state.photos[currentIndex].id;
+                        await galleryBloc.removeOnePhoto(id);
                       },
                       icon: const Icon(Icons.delete),
                     ),
