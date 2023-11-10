@@ -13,7 +13,7 @@ GalleryBloc getGalleryBloc(BuildContext context) {
 class GalleryBlocState {
   final List<PhotoEntity> photos;
   final int page;
-  final int countPerPage = 8;
+  final int countPerPage = 2;
   final int countPage;
 
   GalleryBlocState(
@@ -23,12 +23,12 @@ class GalleryBlocState {
 class GalleryBloc extends Cubit<GalleryBlocState> {
   final PhotoService _photoService = PhotoServiceFactory.getInstance();
 
-  GalleryBloc() : super(GalleryBlocState(photos: [], page: 1, countPage: 1)) {
+  GalleryBloc() : super(GalleryBlocState(photos: [], page: 1, countPage: 2)) {
     initializer();
   }
 
   void initializer() async {
-    var result = await _photoService.getList();
+    var result = await _photoService.getList(page: 1, countPerPage: 2);
 
     if (result is Success) {
       emit(GalleryBlocState(
@@ -39,7 +39,7 @@ class GalleryBloc extends Cubit<GalleryBlocState> {
   }
 
   addPage() async {
-    final page = state.page + 1;
+    int page = state.page + 1;
 
     var result = await _photoService.getList(
         page: page, countPerPage: state.countPerPage);

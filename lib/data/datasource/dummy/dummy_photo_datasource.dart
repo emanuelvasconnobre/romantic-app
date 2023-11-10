@@ -12,16 +12,10 @@ class DummyPhotoDatasource implements PhotoDatasource {
     await Future.delayed(const Duration(seconds: 2));
 
     String id = getRandomFileName();
+    PhotoEntity dummy = PhotoEntity.getDummy();
+    dummy.id = id;
 
-    return PhotoEntity(
-        id,
-        "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Senna_27.jpg",
-        "description $id",
-        "originalName",
-        "fileName",
-        DateTime.now(),
-        22.0,
-        "userId");
+    return dummy;
   }
 
   @override
@@ -35,33 +29,19 @@ class DummyPhotoDatasource implements PhotoDatasource {
 
   @override
   Future<PhotoEntity> getById(String id) async {
-    await Future.delayed(const Duration(seconds: 2));
+    PhotoEntity dummy = PhotoEntity.getDummy();
+    dummy.id = id;
 
-    return PhotoEntity(
-        id,
-        "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Senna_27.jpg",
-        "description $id",
-        "originalName",
-        "fileName",
-        DateTime.now(),
-        22.0,
-        "userId");
+    return dummy;
   }
 
   @override
   Future<PaginatedGenericType<PhotoEntity>> getList(
       int page, int countPerPage) async {
-    return PaginatedGenericType(items: [
-      PhotoEntity(
-          "$page",
-          "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Senna_27.jpg",
-          "description $page",
-          "originalName",
-          "fileName",
-          DateTime.now(),
-          22.0,
-          "userId")
-    ], countPage: 4);
+    PhotoEntity dummy = PhotoEntity.getDummy();
+    dummy.id = "$page";
+
+    return PaginatedGenericType(items: [dummy], countPage: 4);
   }
 
   @override

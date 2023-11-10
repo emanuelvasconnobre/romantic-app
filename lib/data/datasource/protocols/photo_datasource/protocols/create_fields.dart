@@ -15,4 +15,16 @@ class CreateOneDatasourceInput {
       required this.uploadAt,
       required this.size,
       required this.userId});
+
+  Map<String, dynamic> toMap() {
+    return {
+      'imageUrl': imageUrl,
+      'description': description,
+      'originalName': originalName,
+      'fileName': fileName,
+      'uploadAt': uploadAt.toIso8601String(), // Convertendo a data para uma representação de string
+      'size': size,
+      'userId': userId,
+    };
+  }
 }

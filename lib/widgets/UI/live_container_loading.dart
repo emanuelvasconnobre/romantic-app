@@ -4,10 +4,10 @@ class LiveContainerLoading extends StatefulWidget {
   const LiveContainerLoading({super.key});
 
   @override
-  _LiveContainerLoadingState createState() => _LiveContainerLoadingState();
+  LiveContainerLoadingState createState() => LiveContainerLoadingState();
 }
 
-class _LiveContainerLoadingState extends State<LiveContainerLoading>
+class LiveContainerLoadingState extends State<LiveContainerLoading>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;

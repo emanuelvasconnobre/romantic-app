@@ -22,7 +22,9 @@ class FirebaseAuthenticationModule implements AuthenticationModule {
               userName: user.displayName ?? "Perfil Anônimo",
               email: user.email!,
               uid: user.uid,
-              profilePictureUrl: user.photoURL ?? ""),
+              profilePictureUrl: user.photoURL ?? "",
+              bio: "Nothing",
+              name: "Name"),
           auth: AuthData(authOptions: {
             "firebase": true,
           }));
@@ -36,7 +38,6 @@ class FirebaseAuthenticationModule implements AuthenticationModule {
 
       throw UnexpectedException();
     } catch (e) {
-
       throw UnexpectedException();
     }
   }

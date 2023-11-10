@@ -17,7 +17,9 @@ class DummyAuthenticationModule implements AuthenticationModule {
               userName: "Perfil Anônimo",
               email: "email@email.com",
               uid: "3roieagj309jaoieaejio",
-              profilePictureUrl: ""),
+              profilePictureUrl: "",
+              bio: "Nothing",
+              name: "Name"),
           auth: AuthData(authOptions: {
             "firebase": true,
           }));
@@ -31,7 +33,6 @@ class DummyAuthenticationModule implements AuthenticationModule {
 
       throw UnexpectedException();
     } catch (e) {
-
       throw UnexpectedException();
     }
   }

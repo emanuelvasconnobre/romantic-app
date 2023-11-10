@@ -9,12 +9,12 @@ abstract class PhotoDatasource {
     return PaginatedGenericType<PhotoEntity>(items: [], countPage: 5);
   }
 
-  Future<PhotoEntity> getById(String id) async {
-    return PhotoEntity.getDumpInstance();
+  Future<PhotoEntity?> getById(String id) async {
+    return PhotoEntity.getDummy();
   }
 
   Future<PhotoEntity> createOne(CreateOneDatasourceInput input) async {
-    return PhotoEntity.getDumpInstance();
+    return PhotoEntity.getDummy();
   }
 
   Future<void> deleteOne(String id);

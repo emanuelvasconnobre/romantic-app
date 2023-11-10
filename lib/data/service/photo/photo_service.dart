@@ -4,6 +4,7 @@ import 'package:projects/data/datasource/protocols/photo_datasource/protocols/cr
 import 'package:projects/data/object_storage/protocols/object_storage.dart';
 import 'package:projects/data/service/photo/protocols/create_one_service_input.dart';
 import 'package:projects/utils/exceptions/protocols/app_exception.dart';
+import 'package:projects/utils/exceptions/unexpected_exception.dart';
 import 'package:projects/utils/paginated_generic_type.dart';
 import 'package:projects/utils/result_helper/result.dart';
 
@@ -14,9 +15,9 @@ class PhotoService {
   PhotoService({required this.photoDatasource, required this.objectStorage});
 
   Future<Result<PaginatedGenericType<PhotoEntity>>> getList(
-      {int page = 1, int countPerPage = 100}) async {
+      {int? page, int? countPerPage}) async {
     try {
-      final items = await photoDatasource.getList(page, countPerPage);
+      final items = await photoDatasource.getList(page ?? 1, countPerPage ?? 4);
       return Success(data: items);
     } on AppException catch (e) {
       return Failure(e);
@@ -47,6 +48,11 @@ class PhotoService {
   Future<Result> deleteOne(String id) async {
     try {
       var entity = await photoDatasource.getById(id);
+
+      if (entity == null) {
+        throw UnexpectedException();
+      }
+
       await objectStorage.deleteOne(entity.fileName);
       return Success(data: null);
     } on AppException catch (e) {
