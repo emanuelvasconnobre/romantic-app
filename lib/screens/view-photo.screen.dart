@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:projects/bloc/gallery_bloc.dart';
-import 'package:projects/data/datasource/protocols/entities/photo_entity.dart';
-import 'package:projects/widgets/gallery/view_photo_info.dart';
+import 'package:ayane/bloc/gallery_bloc.dart';
+import 'package:ayane/data/datasource/protocols/entities/photo_entity.dart';
+import 'package:ayane/widgets/gallery/view_photo_info.dart';
 
 class ViewPhotoScreen extends StatelessWidget {
   final int initialIndex;

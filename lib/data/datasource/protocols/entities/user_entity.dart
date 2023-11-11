@@ -1,5 +1,5 @@
-  import 'package:projects/utils/exceptions/intance_exception.dart';
-import 'package:projects/utils/exceptions/protocols/app_exception.dart';
+  import 'package:ayane/utils/exceptions/intance_exception.dart';
+import 'package:ayane/utils/exceptions/protocols/app_exception.dart';
 
 class UserEntity {
     String uid;

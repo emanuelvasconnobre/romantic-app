@@ -1,4 +1,4 @@
-import 'package:projects/data/datasource/protocols/entities/photo_entity.dart';
+import 'package:ayane/data/datasource/protocols/entities/photo_entity.dart';
 
 class LocalPhoto {
   final PhotoEntity photo;

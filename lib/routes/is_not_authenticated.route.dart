@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projects/provider/utils/is_authenticed.dart';
+import 'package:ayane/provider/utils/is_authenticed.dart';
 
 class IsNotAuthenticatedRoute extends StatelessWidget {
   final Widget page;

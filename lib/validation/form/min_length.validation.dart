@@ -1,4 +1,4 @@
-import 'package:projects/validation/interfaces/validation.dart';
+import 'package:ayane/validation/interfaces/validation.dart';
 
 class MinLengthValidation implements Validation {
   int length;

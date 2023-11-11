@@ -1,6 +1,6 @@
-import 'package:projects/validation/form/interfaces/email.validator.dart';
-import 'package:projects/validation/form/validators/email.validator.dart';
-import 'package:projects/validation/interfaces/validation.dart';
+import 'package:ayane/validation/form/interfaces/email.validator.dart';
+import 'package:ayane/validation/form/validators/email.validator.dart';
+import 'package:ayane/validation/interfaces/validation.dart';
 
 class EmailValidation implements Validation {
   String message = "Insira um email válido!";

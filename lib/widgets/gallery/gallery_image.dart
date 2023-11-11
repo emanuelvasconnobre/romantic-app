@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:projects/data/datasource/protocols/entities/photo_entity.dart';
-import 'package:projects/widgets/UI/live_container_loading.dart';
+import 'package:ayane/data/datasource/protocols/entities/photo_entity.dart';
+import 'package:ayane/widgets/UI/live_container_loading.dart';
 
 class GalleryImage extends StatefulWidget {
   final PhotoEntity photo;

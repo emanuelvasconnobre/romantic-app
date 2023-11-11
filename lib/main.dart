@@ -1,13 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:projects/bloc/auth_bloc.dart';
-import 'package:projects/bloc/gallery_bloc.dart';
-import 'package:projects/pages/gallery_page.dart';
-import 'package:projects/routes/is_authenticated.route.dart';
-import 'package:projects/routes/is_not_authenticated.route.dart';
-import 'package:projects/screens/home.screen.dart';
-import 'package:projects/screens/login.screen.dart';
+import 'package:ayane/bloc/auth_bloc.dart';
+import 'package:ayane/bloc/gallery_bloc.dart';
+import 'package:ayane/pages/gallery_page.dart';
+import 'package:ayane/routes/is_authenticated.route.dart';
+import 'package:ayane/routes/is_not_authenticated.route.dart';
+import 'package:ayane/screens/home.screen.dart';
+import 'package:ayane/screens/login.screen.dart';
 
 import 'firebase_options.dart';
 

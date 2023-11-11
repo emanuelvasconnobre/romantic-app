@@ -1,4 +1,4 @@
-import 'package:projects/data/datasource/protocols/entities/user_entity.dart';
+import 'package:ayane/data/datasource/protocols/entities/user_entity.dart';
 
 class AuthData<T extends Object> {
   final String? accessToken;

@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:projects/data/auth/protocols/authentication/authentication_module.dart';
-import 'package:projects/data/auth/protocols/authentication/protocols/credential_data.dart';
-import 'package:projects/data/datasource/protocols/entities/user_entity.dart';
-import 'package:projects/utils/exceptions/auth/login_credentials_mismatch_exception.dart';
-import 'package:projects/utils/exceptions/protocols/app_exception.dart';
-import 'package:projects/utils/exceptions/unexpected_exception.dart';
+import 'package:ayane/data/auth/protocols/authentication/authentication_module.dart';
+import 'package:ayane/data/auth/protocols/authentication/protocols/credential_data.dart';
+import 'package:ayane/data/datasource/protocols/entities/user_entity.dart';
+import 'package:ayane/utils/exceptions/auth/login_credentials_mismatch_exception.dart';
+import 'package:ayane/utils/exceptions/protocols/app_exception.dart';
+import 'package:ayane/utils/exceptions/unexpected_exception.dart';
 
 class DummyAuthenticationModule implements AuthenticationModule {
   @override

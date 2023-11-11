@@ -1,12 +1,12 @@
-import 'package:projects/data/datasource/protocols/entities/photo_entity.dart';
-import 'package:projects/data/datasource/protocols/photo_datasource/photo_datasource.dart';
-import 'package:projects/data/datasource/protocols/photo_datasource/protocols/create_fields.dart';
-import 'package:projects/data/object_storage/protocols/object_storage.dart';
-import 'package:projects/data/service/photo/protocols/create_one_service_input.dart';
-import 'package:projects/utils/exceptions/protocols/app_exception.dart';
-import 'package:projects/utils/exceptions/unexpected_exception.dart';
-import 'package:projects/utils/paginated_generic_type.dart';
-import 'package:projects/utils/result_helper/result.dart';
+import 'package:ayane/data/datasource/protocols/entities/photo_entity.dart';
+import 'package:ayane/data/datasource/protocols/photo_datasource/photo_datasource.dart';
+import 'package:ayane/data/datasource/protocols/photo_datasource/protocols/create_fields.dart';
+import 'package:ayane/data/object_storage/protocols/object_storage.dart';
+import 'package:ayane/data/service/photo/protocols/create_one_service_input.dart';
+import 'package:ayane/utils/exceptions/protocols/app_exception.dart';
+import 'package:ayane/utils/exceptions/unexpected_exception.dart';
+import 'package:ayane/utils/paginated_generic_type.dart';
+import 'package:ayane/utils/result_helper/result.dart';
 
 class PhotoService {
   final PhotoDatasource photoDatasource;

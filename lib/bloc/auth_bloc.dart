@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:projects/data/auth/protocols/authentication/protocols/credential_data.dart';
-import 'package:projects/data/service/auth/auth_service.dart';
-import 'package:projects/factories/services/auth_service_factory.dart';
-import 'package:projects/utils/result_helper/result.dart';
+import 'package:ayane/data/auth/protocols/authentication/protocols/credential_data.dart';
+import 'package:ayane/data/service/auth/auth_service.dart';
+import 'package:ayane/factories/services/auth_service_factory.dart';
+import 'package:ayane/utils/result_helper/result.dart';
 
 AuthBloc getAuthBloc(BuildContext context) {
   return BlocProvider.of(context);

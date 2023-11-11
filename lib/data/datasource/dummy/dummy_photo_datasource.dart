@@ -1,10 +1,10 @@
 import 'package:flutter/foundation.dart';
-import 'package:projects/data/datasource/protocols/entities/photo_entity.dart';
-import 'package:projects/data/datasource/protocols/photo_datasource/photo_datasource.dart';
-import 'package:projects/data/datasource/protocols/photo_datasource/protocols/create_fields.dart';
-import 'package:projects/data/datasource/protocols/photo_datasource/protocols/update_fields.dart';
-import 'package:projects/utils/get_random_filename.dart';
-import 'package:projects/utils/paginated_generic_type.dart';
+import 'package:ayane/data/datasource/protocols/entities/photo_entity.dart';
+import 'package:ayane/data/datasource/protocols/photo_datasource/photo_datasource.dart';
+import 'package:ayane/data/datasource/protocols/photo_datasource/protocols/create_fields.dart';
+import 'package:ayane/data/datasource/protocols/photo_datasource/protocols/update_fields.dart';
+import 'package:ayane/utils/get_random_filename.dart';
+import 'package:ayane/utils/paginated_generic_type.dart';
 
 class DummyPhotoDatasource implements PhotoDatasource {
   @override

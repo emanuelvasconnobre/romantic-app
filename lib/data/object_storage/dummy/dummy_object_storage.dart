@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:flutter/foundation.dart';
-import 'package:projects/data/object_storage/protocols/object_storage.dart';
+import 'package:ayane/data/object_storage/protocols/object_storage.dart';
 
 class DummyObjectStorage implements ObjectStorage {
   @override

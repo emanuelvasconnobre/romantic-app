@@ -1,7 +1,7 @@
-import 'package:projects/data/datasource/protocols/entities/photo_entity.dart';
-import 'package:projects/data/datasource/protocols/photo_datasource/protocols/create_fields.dart';
-import 'package:projects/data/datasource/protocols/photo_datasource/protocols/update_fields.dart';
-import 'package:projects/utils/paginated_generic_type.dart';
+import 'package:ayane/data/datasource/protocols/entities/photo_entity.dart';
+import 'package:ayane/data/datasource/protocols/photo_datasource/protocols/create_fields.dart';
+import 'package:ayane/data/datasource/protocols/photo_datasource/protocols/update_fields.dart';
+import 'package:ayane/utils/paginated_generic_type.dart';
 
 abstract class PhotoDatasource {
   Future<PaginatedGenericType<PhotoEntity>> getList(
