@@ -34,9 +34,6 @@ firebase_options.dart
 .pub-cache/
 .pub/
 /build/
-/android/
-/ios/
-/web/
 .pubspec.lock
 .metadata
 
