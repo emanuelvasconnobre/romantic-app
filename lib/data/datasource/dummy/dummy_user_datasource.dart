@@ -1,6 +1,6 @@
-import 'package:ayane/data/datasource/protocols/entities/user_entity.dart';
-import 'package:ayane/data/datasource/protocols/user_datasource/protocols/update_fields.dart';
-import 'package:ayane/data/datasource/protocols/user_datasource/user_datasource.dart';
+import 'package:romanticapp/data/datasource/protocols/entities/user_entity.dart';
+import 'package:romanticapp/data/datasource/protocols/user_datasource/protocols/update_fields.dart';
+import 'package:romanticapp/data/datasource/protocols/user_datasource/user_datasource.dart';
 import 'package:flutter/foundation.dart';
 
 class DummyUserDatasource implements UserDatasource {

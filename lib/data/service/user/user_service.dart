@@ -1,11 +1,11 @@
-import 'package:ayane/cache/map_cache/user_map_cache.dart';
-import 'package:ayane/data/datasource/protocols/entities/user_entity.dart';
-import 'package:ayane/data/datasource/protocols/user_datasource/protocols/update_fields.dart';
-import 'package:ayane/data/object_storage/protocols/object_storage.dart';
-import 'package:ayane/data/service/user/protocols/update_profile_service_input.dart';
-import 'package:ayane/utils/exceptions/data_not_found.dart';
-import 'package:ayane/utils/exceptions/protocols/app_exception.dart';
-import 'package:ayane/utils/result_helper/result.dart';
+import 'package:romanticapp/cache/map_cache/user_map_cache.dart';
+import 'package:romanticapp/data/datasource/protocols/entities/user_entity.dart';
+import 'package:romanticapp/data/datasource/protocols/user_datasource/protocols/update_fields.dart';
+import 'package:romanticapp/data/object_storage/protocols/object_storage.dart';
+import 'package:romanticapp/data/service/user/protocols/update_profile_service_input.dart';
+import 'package:romanticapp/utils/exceptions/data_not_found.dart';
+import 'package:romanticapp/utils/exceptions/protocols/app_exception.dart';
+import 'package:romanticapp/utils/result_helper/result.dart';
 
 import '../../datasource/protocols/user_datasource/user_datasource.dart';
 

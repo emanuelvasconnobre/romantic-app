@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ayane/bloc/auth_bloc.dart';
+import 'package:romanticapp/bloc/auth_bloc.dart';
 
 class ProfileScreen extends StatefulWidget {
   final GlobalKey<NavigatorState> navigatorKey;

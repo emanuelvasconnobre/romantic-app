@@ -1,4 +1,4 @@
-import 'package:ayane/data/datasource/protocols/entities/user_entity.dart';
+import 'package:romanticapp/data/datasource/protocols/entities/user_entity.dart';
 
 class UserEntityMapCache {
   static final UserEntityMapCache _instance = UserEntityMapCache._internal();
