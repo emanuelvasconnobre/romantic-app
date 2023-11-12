@@ -1,8 +1,8 @@
-import 'package:ayane/data/auth/protocols/authentication/authentication_module.dart';
-import 'package:ayane/data/auth/protocols/authentication/protocols/credential_data.dart';
-import 'package:ayane/utils/exceptions/protocols/app_exception.dart';
-import 'package:ayane/utils/exceptions/unexpected_exception.dart';
-import 'package:ayane/utils/result_helper/result.dart';
+import 'package:romanticapp/data/auth/protocols/authentication/authentication_module.dart';
+import 'package:romanticapp/data/auth/protocols/authentication/protocols/credential_data.dart';
+import 'package:romanticapp/utils/exceptions/protocols/app_exception.dart';
+import 'package:romanticapp/utils/exceptions/unexpected_exception.dart';
+import 'package:romanticapp/utils/result_helper/result.dart';
 
 class AuthService {
   final AuthenticationModule authenticationModule;

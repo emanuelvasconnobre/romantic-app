@@ -1,7 +1,7 @@
-import 'package:ayane/data/datasource/protocols/entities/photo_entity.dart';
-import 'package:ayane/data/datasource/protocols/photo_datasource/protocols/create_fields.dart';
-import 'package:ayane/data/datasource/protocols/photo_datasource/protocols/update_fields.dart';
-import 'package:ayane/utils/paginated_generic_type.dart';
+import 'package:romanticapp/data/datasource/protocols/entities/photo_entity.dart';
+import 'package:romanticapp/data/datasource/protocols/photo_datasource/protocols/create_fields.dart';
+import 'package:romanticapp/data/datasource/protocols/photo_datasource/protocols/update_fields.dart';
+import 'package:romanticapp/utils/paginated_generic_type.dart';
 
 abstract class PhotoDatasource {
   Future<PaginatedGenericType<PhotoEntity>> getList(

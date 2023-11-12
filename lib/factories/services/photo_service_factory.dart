@@ -1,6 +1,6 @@
-import 'package:ayane/data/datasource/dummy/dummy_photo_datasource.dart';
-import 'package:ayane/data/datasource/firebase/firebase_photo_datasource.dart';
-import 'package:ayane/factories/object_storage/object_storage_factory.dart';
+import 'package:romanticapp/data/datasource/dummy/dummy_photo_datasource.dart';
+import 'package:romanticapp/data/datasource/firebase/firebase_photo_datasource.dart';
+import 'package:romanticapp/factories/object_storage/object_storage_factory.dart';
 
 import '../../data/service/photo/photo_service.dart';
 

@@ -1,11 +1,11 @@
 {
-    "name": "projects",
-    "short_name": "projects",
+    "name": "romanticapp",
+    "short_name": "romanticapp",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "Um projeto de teste",
+    "description": "Romantic APP",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

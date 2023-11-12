@@ -1,5 +1,5 @@
-  import 'package:ayane/utils/exceptions/intance_exception.dart';
-import 'package:ayane/utils/exceptions/protocols/app_exception.dart';
+  import 'package:romanticapp/utils/exceptions/intance_exception.dart';
+import 'package:romanticapp/utils/exceptions/protocols/app_exception.dart';
 
 class UserEntity {
     String uid;

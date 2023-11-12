@@ -1,4 +1,4 @@
-import 'package:ayane/utils/exceptions/protocols/app_exception.dart';
+import 'package:romanticapp/utils/exceptions/protocols/app_exception.dart';
 
 enum ResultMessageType { danger, success, warning, info }
 

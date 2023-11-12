@@ -1,5 +1,5 @@
-import 'package:ayane/utils/exceptions/protocols/app_exception.dart';
-import 'package:ayane/utils/result_helper/result.dart';
+import 'package:romanticapp/utils/exceptions/protocols/app_exception.dart';
+import 'package:romanticapp/utils/result_helper/result.dart';
 
 class UnexpectedException extends AppException {
   UnexpectedException()
