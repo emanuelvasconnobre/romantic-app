@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "665522164924",
+    "project_id": "romantic-app-25780",
+    "storage_bucket": "romantic-app-25780.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:665522164924:android:25e2451d2800180b34ecb9",
+        "android_client_info": {
+          "package_name": "com.example.projects"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCd_cH6XjxRTDb1oBDwkoRUGkJVFqjT-qo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

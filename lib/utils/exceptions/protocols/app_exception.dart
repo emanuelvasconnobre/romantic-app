@@ -1,4 +1,4 @@
-import 'package:ayane/utils/result_helper/result.dart';
+import 'package:romanticapp/utils/result_helper/result.dart';
 
 class AppException implements Exception {
   final String message;

@@ -1,9 +1,9 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:ayane/bloc/auth_bloc.dart';
-import 'package:ayane/bloc/gallery_bloc.dart';
-import 'package:ayane/data/service/photo/protocols/create_one_service_input.dart';
+import 'package:romanticapp/bloc/auth_bloc.dart';
+import 'package:romanticapp/bloc/gallery_bloc.dart';
+import 'package:romanticapp/data/service/photo/protocols/create_one_service_input.dart';
 
 class UploadImageScreen extends StatefulWidget {
   final GlobalKey<NavigatorState> navigatorKey;

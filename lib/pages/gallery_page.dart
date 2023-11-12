@@ -1,8 +1,8 @@
 import 'package:ayane/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ayane/screens/gallery.screen.dart';
-import 'package:ayane/screens/upload_image_screen.dart';
+import 'package:romanticapp/screens/gallery.screen.dart';
+import 'package:romanticapp/screens/upload_image_screen.dart';
 
 import '../bloc/auth_bloc.dart';
 

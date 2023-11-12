@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ayane/bloc/auth_bloc.dart';
-import 'package:ayane/validation/composite.validation.dart';
-import 'package:ayane/validation/form/email.validation.dart';
-import 'package:ayane/validation/form/is_not_empty.validation.dart';
-import 'package:ayane/validation/form/min_length.validation.dart';
+import 'package:romanticapp/bloc/auth_bloc.dart';
+import 'package:romanticapp/validation/composite.validation.dart';
+import 'package:romanticapp/validation/form/email.validation.dart';
+import 'package:romanticapp/validation/form/is_not_empty.validation.dart';
+import 'package:romanticapp/validation/form/min_length.validation.dart';
 
 class LoginScreen extends StatefulWidget {
   final GlobalKey<NavigatorState> navigatorKey;

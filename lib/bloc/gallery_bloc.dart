@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ayane/data/datasource/protocols/entities/photo_entity.dart';
-import 'package:ayane/data/service/photo/photo_service.dart';
-import 'package:ayane/data/service/photo/protocols/create_one_service_input.dart';
-import 'package:ayane/factories/services/photo_service_factory.dart';
-import 'package:ayane/utils/result_helper/result.dart';
+import 'package:romanticapp/data/datasource/protocols/entities/photo_entity.dart';
+import 'package:romanticapp/data/service/photo/photo_service.dart';
+import 'package:romanticapp/data/service/photo/protocols/create_one_service_input.dart';
+import 'package:romanticapp/factories/services/photo_service_factory.dart';
+import 'package:romanticapp/utils/result_helper/result.dart';
 
 GalleryBloc getGalleryBloc(BuildContext context) {
   return BlocProvider.of(context);

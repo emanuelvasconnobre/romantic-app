@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ayane/bloc/gallery_bloc.dart';
-import 'package:ayane/screens/view-photo.screen.dart';
-import 'package:ayane/widgets/gallery/gallery_image.dart';
+import 'package:romanticapp/bloc/gallery_bloc.dart';
+import 'package:romanticapp/screens/view-photo.screen.dart';
+import 'package:romanticapp/widgets/gallery/gallery_image.dart';
 
 class GalleryScreen extends StatefulWidget {
   final GlobalKey<NavigatorState> navigatorKey;

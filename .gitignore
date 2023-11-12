@@ -1,3 +1,7 @@
+
+# Firebase
+firebase_options.dart
+
 # Miscellaneous
 *.class
 *.log
@@ -9,9 +13,6 @@
 .history
 .svn/
 migrate_working_dir/
-
-# Firebase
-firebase_options.dart
 
 # IntelliJ related
 *.iml
@@ -34,11 +35,6 @@ firebase_options.dart
 .pub-cache/
 .pub/
 /build/
-/android/
-/ios/
-/web/
-.pubspec.lock
-.metadata
 
 # Symbolication related
 app.*.symbols
@@ -51,5 +47,6 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
+# Env
 *.env
 .env

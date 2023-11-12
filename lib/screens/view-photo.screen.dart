@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ayane/bloc/gallery_bloc.dart';
-import 'package:ayane/data/datasource/protocols/entities/photo_entity.dart';
-import 'package:ayane/widgets/gallery/view_photo_info.dart';
+import 'package:romanticapp/bloc/gallery_bloc.dart';
+import 'package:romanticapp/data/datasource/protocols/entities/photo_entity.dart';
+import 'package:romanticapp/widgets/gallery/view_photo_info.dart';
 
 class ViewPhotoScreen extends StatelessWidget {
   final int initialIndex;
