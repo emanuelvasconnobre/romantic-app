@@ -1,3 +1,4 @@
+import 'package:ayane/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ayane/screens/gallery.screen.dart';
@@ -44,6 +45,8 @@ class GalleryPage extends StatelessWidget {
               GalleryScreen(navigatorKey: navigatorKey, parentContext: context),
               UploadImageScreen(
                   navigatorKey: navigatorKey, parentContext: context),
+              ProfileScreen(
+                  navigatorKey: navigatorKey, parentContext: context),
             ],
           ),
           bottomNavigationBar: Container(
@@ -52,6 +55,7 @@ class GalleryPage extends StatelessWidget {
                 tabs: [
                   Tab(icon: Icon(Icons.image), text: 'Galeria'),
                   Tab(icon: Icon(Icons.add_a_photo), text: 'Adicionar'),
+                  Tab(icon: Icon(Icons.person), text: 'Perfil'),
                 ],
               )),
         ));

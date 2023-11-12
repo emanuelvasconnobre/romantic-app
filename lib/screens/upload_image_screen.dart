@@ -95,10 +95,10 @@ class _UploadImageScreenState extends State<UploadImageScreen> {
             const SizedBox(height: 10),
             _image != null
                 ? Image.file(
-                    fit: BoxFit.contain,
-                    _image!,
-                    height: 150,
-                  )
+              fit: BoxFit.contain,
+              _image!,
+              height: 150,
+            )
                 : Container(),
             const SizedBox(height: 20),
             Row(
@@ -118,3 +118,4 @@ class _UploadImageScreenState extends State<UploadImageScreen> {
     );
   }
 }
+
