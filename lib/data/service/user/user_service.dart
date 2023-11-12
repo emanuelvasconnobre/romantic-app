@@ -1,0 +1,50 @@
+import 'package:ayane/data/datasource/protocols/entities/user_entity.dart';
+import 'package:ayane/data/datasource/protocols/user_datasource/protocols/update_fields.dart';
+import 'package:ayane/data/object_storage/protocols/object_storage.dart';
+import 'package:ayane/data/service/user/protocols/update_profile_service_input.dart';
+import 'package:ayane/utils/exceptions/data_not_found.dart';
+import 'package:ayane/utils/exceptions/protocols/app_exception.dart';
+import 'package:ayane/utils/result_helper/result.dart';
+
+import '../../datasource/protocols/user_datasource/user_datasource.dart';
+
+class UserService {
+  final UserDatasource userDatasource;
+  final ObjectStorage objectStorage;
+
+  UserService({required this.userDatasource, required this.objectStorage});
+
+  Future<Result<UserEntity>> getProfile(String uid) async {
+    try {
+      UserEntity? data = await userDatasource.getById(uid);
+
+      if (data == null) {
+        throw DataNotFoundException();
+      }
+
+      return Success(data: data);
+    } on AppException catch (e) {
+      return Failure(e);
+    }
+  }
+
+  Future<Result> updateProfile(
+      String uid, UpdateProfileUserServiceInput input) async {
+    try {
+      final objectStoraged =
+          await objectStorage.uploadOne(input.profilePicture);
+
+      final datasourceInput = UpdateOneUserDatasourceInput(
+        profilePictureUrl: objectStoraged.imageUrl,
+        bio: input.bio,
+        name: input.name,
+      );
+
+      await userDatasource.updateOne(uid, datasourceInput);
+
+      return Success(data: null);
+    } on AppException catch (e) {
+      return Failure(e);
+    }
+  }
+}
