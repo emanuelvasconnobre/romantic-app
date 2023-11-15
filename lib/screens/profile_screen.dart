@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:romanticapp/bloc/auth_bloc.dart';
+import 'package:romanticapp/screens/edit_profile_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   final GlobalKey<NavigatorState> navigatorKey;
@@ -15,7 +16,19 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   late AuthBloc _authBloc;
 
-  void profileEditOnPressHandler() {}
+  void profileEditOnPressHandler() {
+    showModalBottomSheet(
+      isScrollControlled: true,
+      context: context,
+      backgroundColor: Colors.white,
+      builder: (BuildContext builderContext) {
+        return EditProfileScreen(
+          navigatorKey: widget.navigatorKey,
+          parentContext: widget.parentContext,
+        );
+      },
+    );
+  }
 
   void logOutOnPressHandler() async {
     await _authBloc.logOut();

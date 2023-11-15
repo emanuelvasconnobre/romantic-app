@@ -1,12 +1,12 @@
 class UpdateOneUserDatasourceInput {
-  final String name;
-  final String profilePictureUrl;
-  final String bio;
+  String? name;
+  String? profilePictureUrl;
+  String? bio;
 
   UpdateOneUserDatasourceInput({
-    required this.name,
-    required this.profilePictureUrl,
-    required this.bio,
+    this.name,
+    this.profilePictureUrl,
+    this.bio,
   });
 
   Map<String, dynamic> toMap() {

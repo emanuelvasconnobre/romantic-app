@@ -3,6 +3,7 @@ import 'package:romanticapp/data/datasource/protocols/entities/user_entity.dart'
 import 'package:romanticapp/data/datasource/protocols/user_datasource/protocols/update_fields.dart';
 import 'package:romanticapp/data/object_storage/protocols/object_storage.dart';
 import 'package:romanticapp/data/service/user/protocols/update_profile_service_input.dart';
+import 'package:romanticapp/data/service/user/protocols/update_profile_service_output.dart';
 import 'package:romanticapp/utils/exceptions/data_not_found.dart';
 import 'package:romanticapp/utils/exceptions/protocols/app_exception.dart';
 import 'package:romanticapp/utils/result_helper/result.dart';
@@ -39,21 +40,26 @@ class UserService {
     }
   }
 
-  Future<Result> updateProfile(
+  Future<Result<UpdateProfileUserServiceOutput>> updateProfile(
       String uid, UpdateProfileUserServiceInput input) async {
     try {
-      final objectStoraged =
-          await objectStorage.uploadOne(input.profilePicture);
+      final datasourceInput = UpdateOneUserDatasourceInput();
 
-      final datasourceInput = UpdateOneUserDatasourceInput(
-        profilePictureUrl: objectStoraged.imageUrl,
-        bio: input.bio,
-        name: input.name,
-      );
+      if (input.profilePicture != null) {
+        datasourceInput.profilePictureUrl =
+            (await objectStorage.uploadOne(input.profilePicture!)).imageUrl;
+      }
+      if (input.name != null) datasourceInput.name = input.name!;
+      if (input.bio != null) datasourceInput.name = input.bio!;
 
       await userDatasource.updateOne(uid, datasourceInput);
 
-      return Success(data: null);
+      return Success(
+          data: UpdateProfileUserServiceOutput(
+        profilePictureUrl: datasourceInput.profilePictureUrl,
+        bio: input.bio,
+        name: input.name,
+      ));
     } on AppException catch (e) {
       return Failure(e);
     }
