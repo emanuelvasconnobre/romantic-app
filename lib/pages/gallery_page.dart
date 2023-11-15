@@ -16,7 +16,7 @@ class GalleryPage extends StatelessWidget {
     AuthBloc authBloc = BlocProvider.of<AuthBloc>(context);
 
     return DefaultTabController(
-        length: 2,
+        length: 3,
         child: Scaffold(
           appBar: AppBar(
             automaticallyImplyLeading: false,

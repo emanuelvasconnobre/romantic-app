@@ -67,3 +67,17 @@ class AuthBloc extends Cubit<AuthBlocState> {
 
   bool get isLoggedIn => state.auth != null && state.user != null;
 }
+
+class AuthBlocBuilder extends BlocBuilder<AuthBloc, AuthBlocState> {
+  AuthBlocBuilder({
+    Key? key,
+    required BuildContext context,
+    BlocBuilderCondition<AuthBlocState>? buildWhen,
+    required Widget Function(BuildContext, AuthBlocState) builder,
+  }) : super(
+    key: key,
+    bloc: BlocProvider.of<AuthBloc>(context),
+    builder: builder,
+    buildWhen: buildWhen,
+  );
+}

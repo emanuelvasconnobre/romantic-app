@@ -13,9 +13,17 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  late bool _isLoading = false;
-
   late AuthBloc _authBloc;
+
+  void profileEditOnPressHandler() {}
+
+  void logOutOnPressHandler() async {
+    await _authBloc.logOut();
+
+    if (!_authBloc.isLoggedIn) {
+      widget.navigatorKey.currentState?.pushNamed('/');
+    }
+  }
 
   @override
   void initState() {
@@ -25,13 +33,68 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Center(
-          child: Text(
-              "fawefawf"
-          ),
-        )
-    );
+    return AuthBlocBuilder(
+        context: widget.parentContext,
+        builder: (context, state) {
+          return Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Row(
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.only(right: 15.0),
+                      child: CircleAvatar(
+                        radius: 50.0,
+                        backgroundImage: NetworkImage(state.user!
+                            .profilePictureUrl), // Substitua pelo caminho da sua imagem de perfil
+                      ),
+                    ),
+                    const SizedBox(width: 10.0),
+                    Expanded(
+                      flex: 1,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            state.user!.name,
+                            style: const TextStyle(fontSize: 24.0),
+                            overflow: TextOverflow.clip,
+                          ),
+                          Text(
+                            state.user!.userName,
+                            style: const TextStyle(fontSize: 18.0),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+                const SizedBox(height: 20.0),
+                ElevatedButton(
+                  onPressed: profileEditOnPressHandler,
+                  child: const Text('Dados de Perfil'),
+                ),
+                Expanded(
+                  child: Container(),
+                ),
+                ElevatedButton(
+                  onPressed: logOutOnPressHandler,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.red,
+                  ),
+                  child: const Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: Text(
+                      'Sair',
+                      style: TextStyle(fontSize: 18.0),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        });
   }
 }
