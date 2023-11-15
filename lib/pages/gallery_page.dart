@@ -1,10 +1,7 @@
 import 'package:romanticapp/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:romanticapp/screens/gallery.screen.dart';
 import 'package:romanticapp/screens/upload_image_screen.dart';
-
-import '../bloc/auth_bloc.dart';
 
 class GalleryPage extends StatelessWidget {
   final GlobalKey<NavigatorState> navigatorKey;
@@ -13,8 +10,6 @@ class GalleryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AuthBloc authBloc = BlocProvider.of<AuthBloc>(context);
-
     return DefaultTabController(
         length: 3,
         child: Scaffold(
@@ -27,26 +22,13 @@ class GalleryPage extends StatelessWidget {
               },
             ),
             title: const Text('Romantic App'),
-            actions: <Widget>[
-              IconButton(
-                icon: const Icon(Icons.logout),
-                onPressed: () async {
-                  await authBloc.logOut();
-
-                  if (!authBloc.isLoggedIn) {
-                    navigatorKey.currentState?.pushNamed('/');
-                  }
-                },
-              ),
-            ],
           ),
           body: TabBarView(
             children: [
               GalleryScreen(navigatorKey: navigatorKey, parentContext: context),
               UploadImageScreen(
                   navigatorKey: navigatorKey, parentContext: context),
-              ProfileScreen(
-                  navigatorKey: navigatorKey, parentContext: context),
+              ProfileScreen(navigatorKey: navigatorKey, parentContext: context),
             ],
           ),
           bottomNavigationBar: Container(
