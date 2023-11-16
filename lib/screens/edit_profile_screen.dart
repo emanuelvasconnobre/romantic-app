@@ -9,9 +9,7 @@ class EditProfileScreen extends StatefulWidget {
   final BuildContext parentContext;
 
   const EditProfileScreen(
-      {required this.navigatorKey,
-      required this.parentContext,
-      super.key});
+      {required this.navigatorKey, required this.parentContext, super.key});
 
   @override
   State<EditProfileScreen> createState() => _EditProfileScreenState();
@@ -77,8 +75,42 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            const SizedBox(height: 20),
+            const Text("Dados do usuário", style: TextStyle(fontSize: 24.0)),
+            const SizedBox(height: 20),
+            Row(
+              children: [
+                Container(
+                    margin: const EdgeInsets.only(right: 15.0),
+                    child: _image != null
+                        ? CircleAvatar(
+                        radius: 50.0,
+                        backgroundImage: FileImage(
+                          _image!,
+                        ))
+                        : CircleAvatar(
+                      radius: 50.0,
+                      backgroundColor: Colors.blue,
+                      child: ClipOval(
+                        child: AspectRatio(
+                            aspectRatio: 1.5,
+                            child: Image.asset(
+                              "assets/images/pick-image-icon.png",
+                              fit: BoxFit.contain,
+                            )),
+                      ),
+                    )),
+                const SizedBox(width: 10),
+                ElevatedButton(
+                  onPressed: getImage,
+                  child: const Text('Selecionar Imagem'),
+                ),
+              ],
+            ),
+            const SizedBox(height: 20),
             TextFormField(
               controller: _nameController,
+              enabled: !_isLoading,
               decoration: const InputDecoration(
                 labelText: 'Nome',
               ),
@@ -91,6 +123,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             ),
             TextFormField(
               controller: _bioController,
+              enabled: !_isLoading,
               decoration: const InputDecoration(
                 labelText: 'Bio',
               ),
@@ -101,19 +134,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 return null;
               },
             ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: getImage,
-              child: const Text('Selecionar Imagem'),
+            Expanded(
+              flex: 1,
+              child: Container(),
             ),
-            const SizedBox(height: 10),
-            _image != null
-                ? Image.file(
-                    fit: BoxFit.contain,
-                    _image!,
-                    height: 150,
-                  )
-                : Container(),
             const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
