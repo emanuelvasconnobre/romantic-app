@@ -43,22 +43,22 @@ class UserService {
   Future<Result<UpdateProfileUserServiceOutput>> updateProfile(
       String uid, UpdateProfileUserServiceInput input) async {
     try {
-      final datasourceInput = UpdateOneUserDatasourceInput();
-
+      final datasourceInput = UpdateOneUserDatasourceInput(
+          name: null, bio: null, profilePictureUrl: null);
       if (input.profilePicture != null) {
         datasourceInput.profilePictureUrl =
             (await objectStorage.uploadOne(input.profilePicture!)).imageUrl;
       }
       if (input.name != null) datasourceInput.name = input.name!;
-      if (input.bio != null) datasourceInput.name = input.bio!;
+      if (input.bio != null) datasourceInput.bio = input.bio!;
 
       await userDatasource.updateOne(uid, datasourceInput);
 
       return Success(
           data: UpdateProfileUserServiceOutput(
         profilePictureUrl: datasourceInput.profilePictureUrl,
-        bio: input.bio,
         name: input.name,
+        bio: input.bio,
       ));
     } on AppException catch (e) {
       return Failure(e);

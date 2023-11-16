@@ -1,11 +1,11 @@
 class UpdateOneUserDatasourceInput {
-  String? name;
   String? profilePictureUrl;
+  String? name;
   String? bio;
 
   UpdateOneUserDatasourceInput({
-    this.name,
     this.profilePictureUrl,
+    this.name,
     this.bio,
   });
 
