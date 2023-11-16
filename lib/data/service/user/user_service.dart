@@ -4,7 +4,7 @@ import 'package:romanticapp/data/datasource/protocols/user_datasource/protocols/
 import 'package:romanticapp/data/object_storage/protocols/object_storage.dart';
 import 'package:romanticapp/data/service/user/protocols/update_profile_service_input.dart';
 import 'package:romanticapp/data/service/user/protocols/update_profile_service_output.dart';
-import 'package:romanticapp/utils/exceptions/data_not_found.dart';
+import 'package:romanticapp/utils/exceptions/auth/user_data_missing_exception.dart';
 import 'package:romanticapp/utils/exceptions/protocols/app_exception.dart';
 import 'package:romanticapp/utils/result_helper/result.dart';
 
@@ -29,7 +29,7 @@ class UserService {
       data = await userDatasource.getById(uid);
 
       if (data == null) {
-        throw DataNotFoundException();
+        throw UserDataMissingException();
       }
 
       userCache.set(key: uid, value: data);

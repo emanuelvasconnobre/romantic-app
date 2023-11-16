@@ -15,6 +15,11 @@ class AppException implements Exception {
       this.type})
       : issues = issues ?? [];
 
+  @override
+  String toString() {
+    return 'AppException: { title: $title, message: $message, stack: $stack, issues: $issues, type: $type }';
+  }
+
   getResultMessage() {
     final definedType = type ?? ResultMessageType.danger;
 

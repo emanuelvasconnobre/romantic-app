@@ -24,7 +24,7 @@ class FirebaseAuthenticationModule implements AuthenticationModule {
       var getProfileResult = await userService.getProfile(user.uid);
 
       if (getProfileResult is Failure) {
-          throw UnexpectedException();
+          throw getProfileResult.exception!;
       }
 
       return CredentialData(
