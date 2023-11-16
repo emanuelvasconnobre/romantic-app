@@ -43,7 +43,6 @@ class UserService {
   Future<Result<UpdateProfileUserServiceOutput>> updateProfile(
       String uid, UpdateProfileUserServiceInput input) async {
     try {
-      print(input.toMap());
       final datasourceInput = UpdateOneUserDatasourceInput(
           name: null, bio: null, profilePictureUrl: null);
       if (input.profilePicture != null) {

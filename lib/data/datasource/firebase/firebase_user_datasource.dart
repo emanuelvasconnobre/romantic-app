@@ -43,10 +43,8 @@ class FirebaseUserDatasource implements UserDatasource {
   Future<void> updateOne(
       String id, UpdateOneUserDatasourceInput updateFields) async {
     try {
-      print(updateFields.toMap());
       Map<String, dynamic> mapData = updateFields.toMap();
       mapData.removeWhere((key, value) => value == null);
-      print(mapData);
       await userCollection.doc(id).update(mapData);
     } on AppException catch (_) {
       rethrow;

@@ -45,11 +45,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         String name = _nameController.text;
         String bio = _bioController.text;
 
-        print({
-          "profilePicture": _image.runtimeType,
-          "bio": bio,
-          "name": name,
-        });
         var input = UpdateProfileUserServiceInput(
           profilePicture: _image,
           name: name,
