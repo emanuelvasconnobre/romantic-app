@@ -15,12 +15,6 @@ class GalleryPage extends StatelessWidget {
         child: Scaffold(
           appBar: AppBar(
             automaticallyImplyLeading: false,
-            leading: IconButton(
-              icon: const Icon(Icons.home), // Customize the icon as needed
-              onPressed: () {
-                navigatorKey.currentState?.pushNamed('/');
-              },
-            ),
             title: const Text('Romantic App'),
           ),
           body: TabBarView(

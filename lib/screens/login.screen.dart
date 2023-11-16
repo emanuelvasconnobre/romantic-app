@@ -84,12 +84,6 @@ class LoginScreenState extends State<LoginScreen> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: const Text('Login'),
-        leading: IconButton(
-          icon: const Icon(Icons.home), // Customize the icon as needed
-          onPressed: () {
-            widget.navigatorKey.currentState?.pushNamed('/');
-          },
-        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

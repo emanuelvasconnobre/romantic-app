@@ -6,7 +6,6 @@ import 'package:romanticapp/bloc/gallery_bloc.dart';
 import 'package:romanticapp/pages/gallery_page.dart';
 import 'package:romanticapp/routes/is_authenticated.route.dart';
 import 'package:romanticapp/routes/is_not_authenticated.route.dart';
-import 'package:romanticapp/screens/home.screen.dart';
 import 'package:romanticapp/screens/login.screen.dart';
 
 import 'firebase_options.dart';
@@ -35,7 +34,6 @@ class MyApp extends StatelessWidget {
         initialRoute: '/login',
         navigatorKey: appNavigatorKey,
         routes: {
-          '/': (context) => const IsNotAuthenticatedRoute(HomeScreen()),
           '/login': (context) => IsNotAuthenticatedRoute(
               LoginScreen(navigatorKey: appNavigatorKey)),
           '/gallery': (context) => IsAuthenticatedRoute(BlocProvider(
