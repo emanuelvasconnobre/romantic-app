@@ -45,14 +45,17 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         String name = _nameController.text;
         String bio = _bioController.text;
 
-        await _authBloc.editProfile(UpdateProfileUserServiceInput(
+        var input = UpdateProfileUserServiceInput(
           profilePicture: _image,
-          bio: name,
-          name: bio,
-        ));
+          name: name,
+          bio: bio,
+        );
+
+        await _authBloc.editProfile(input);
 
         setState(() {
           _isLoading = false;
+          widget.navigatorKey.currentState?.pop();
         });
       }
     }
@@ -84,22 +87,22 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     margin: const EdgeInsets.only(right: 15.0),
                     child: _image != null
                         ? CircleAvatar(
-                        radius: 50.0,
-                        backgroundImage: FileImage(
-                          _image!,
-                        ))
+                            radius: 50.0,
+                            backgroundImage: FileImage(
+                              _image!,
+                            ))
                         : CircleAvatar(
-                      radius: 50.0,
-                      backgroundColor: Colors.blue,
-                      child: ClipOval(
-                        child: AspectRatio(
-                            aspectRatio: 1.5,
-                            child: Image.asset(
-                              "assets/images/pick-image-icon.png",
-                              fit: BoxFit.contain,
-                            )),
-                      ),
-                    )),
+                            radius: 50.0,
+                            backgroundColor: Colors.blue,
+                            child: ClipOval(
+                              child: AspectRatio(
+                                  aspectRatio: 1.5,
+                                  child: Image.asset(
+                                    "assets/images/pick-image-icon.png",
+                                    fit: BoxFit.contain,
+                                  )),
+                            ),
+                          )),
                 const SizedBox(width: 10),
                 ElevatedButton(
                   onPressed: getImage,

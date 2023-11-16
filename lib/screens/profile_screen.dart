@@ -34,7 +34,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     await _authBloc.logOut();
 
     if (!_authBloc.isLoggedIn) {
-      widget.navigatorKey.currentState?.pushNamed('/');
+      widget.navigatorKey.currentState?.pushNamed('/login');
     }
   }
 
