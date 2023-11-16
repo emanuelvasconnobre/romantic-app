@@ -1,13 +1,17 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:ayane/data/auth/protocols/authentication/authentication_module.dart';
-import 'package:ayane/data/auth/protocols/authentication/protocols/credential_data.dart';
-import 'package:ayane/data/datasource/protocols/entities/user_entity.dart';
-import 'package:ayane/utils/exceptions/auth/login_credentials_mismatch_exception.dart';
-import 'package:ayane/utils/exceptions/protocols/app_exception.dart';
-import 'package:ayane/utils/exceptions/unexpected_exception.dart';
+import 'package:romanticapp/data/auth/protocols/authentication/authentication_module.dart';
+import 'package:romanticapp/data/auth/protocols/authentication/protocols/credential_data.dart';
+import 'package:romanticapp/factories/services/user_service_factory.dart';
+import 'package:romanticapp/utils/exceptions/auth/login_credentials_mismatch_exception.dart';
+import 'package:romanticapp/utils/exceptions/protocols/app_exception.dart';
+import 'package:romanticapp/utils/exceptions/unexpected_exception.dart';
+import 'package:romanticapp/utils/result_helper/result.dart';
+
+import '../../service/user/user_service.dart';
 
 class FirebaseAuthenticationModule implements AuthenticationModule {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final UserService userService = UserServiceFactory.getInstanceFromFirebase();
 
   @override
   Future<CredentialData> logIn(String email, String password) async {
@@ -17,14 +21,14 @@ class FirebaseAuthenticationModule implements AuthenticationModule {
 
       User user = result.user!;
 
+      var getProfileResult = await userService.getProfile(user.uid);
+
+      if (getProfileResult is Failure) {
+          throw getProfileResult.exception!;
+      }
+
       return CredentialData(
-          user: UserEntity(
-              userName: user.displayName ?? "Perfil Anônimo",
-              email: user.email!,
-              uid: user.uid,
-              profilePictureUrl: user.photoURL ?? "",
-              bio: "Nothing",
-              name: "Name"),
+          user: getProfileResult.data,
           auth: AuthData(authOptions: {
             "firebase": true,
           }));

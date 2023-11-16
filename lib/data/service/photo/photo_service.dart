@@ -1,12 +1,12 @@
-import 'package:ayane/data/datasource/protocols/entities/photo_entity.dart';
-import 'package:ayane/data/datasource/protocols/photo_datasource/photo_datasource.dart';
-import 'package:ayane/data/datasource/protocols/photo_datasource/protocols/create_fields.dart';
-import 'package:ayane/data/object_storage/protocols/object_storage.dart';
-import 'package:ayane/data/service/photo/protocols/create_one_service_input.dart';
-import 'package:ayane/utils/exceptions/protocols/app_exception.dart';
-import 'package:ayane/utils/exceptions/unexpected_exception.dart';
-import 'package:ayane/utils/paginated_generic_type.dart';
-import 'package:ayane/utils/result_helper/result.dart';
+import 'package:romanticapp/data/datasource/protocols/entities/photo_entity.dart';
+import 'package:romanticapp/data/datasource/protocols/photo_datasource/photo_datasource.dart';
+import 'package:romanticapp/data/datasource/protocols/photo_datasource/protocols/create_fields.dart';
+import 'package:romanticapp/data/object_storage/protocols/object_storage.dart';
+import 'package:romanticapp/data/service/photo/protocols/create_one_service_input.dart';
+import 'package:romanticapp/utils/exceptions/protocols/app_exception.dart';
+import 'package:romanticapp/utils/exceptions/unexpected_exception.dart';
+import 'package:romanticapp/utils/paginated_generic_type.dart';
+import 'package:romanticapp/utils/result_helper/result.dart';
 
 class PhotoService {
   final PhotoDatasource photoDatasource;
@@ -53,7 +53,9 @@ class PhotoService {
         throw UnexpectedException();
       }
 
+      await photoDatasource.deleteOne(id);
       await objectStorage.deleteOne(entity.fileName);
+
       return Success(data: null);
     } on AppException catch (e) {
       return Failure(e);

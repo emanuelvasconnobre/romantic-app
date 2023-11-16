@@ -1,9 +1,9 @@
 import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:ayane/data/object_storage/protocols/object_storage.dart';
-import 'package:ayane/utils/exceptions/unexpected_exception.dart';
-import 'package:ayane/utils/get_file_size.dart';
-import 'package:ayane/utils/get_random_filename.dart';
+import 'package:romanticapp/data/object_storage/protocols/object_storage.dart';
+import 'package:romanticapp/utils/exceptions/unexpected_exception.dart';
+import 'package:romanticapp/utils/get_file_size.dart';
+import 'package:romanticapp/utils/get_random_filename.dart';
 
 class FirebaseObjectStorage implements ObjectStorage {
   final storage = FirebaseStorage.instance;

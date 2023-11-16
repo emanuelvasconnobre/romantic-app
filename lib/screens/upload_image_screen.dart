@@ -1,9 +1,9 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:ayane/bloc/auth_bloc.dart';
-import 'package:ayane/bloc/gallery_bloc.dart';
-import 'package:ayane/data/service/photo/protocols/create_one_service_input.dart';
+import 'package:romanticapp/bloc/auth_bloc.dart';
+import 'package:romanticapp/bloc/gallery_bloc.dart';
+import 'package:romanticapp/data/service/photo/protocols/create_one_service_input.dart';
 
 class UploadImageScreen extends StatefulWidget {
   final GlobalKey<NavigatorState> navigatorKey;
@@ -77,6 +77,7 @@ class _UploadImageScreenState extends State<UploadImageScreen> {
           children: <Widget>[
             TextFormField(
               controller: _descriptionController,
+              enabled: !_isLoading,
               decoration: const InputDecoration(
                 labelText: 'Descrição',
               ),
@@ -95,10 +96,10 @@ class _UploadImageScreenState extends State<UploadImageScreen> {
             const SizedBox(height: 10),
             _image != null
                 ? Image.file(
-                    fit: BoxFit.contain,
-                    _image!,
-                    height: 150,
-                  )
+              fit: BoxFit.contain,
+              _image!,
+              height: 150,
+            )
                 : Container(),
             const SizedBox(height: 20),
             Row(
@@ -118,3 +119,4 @@ class _UploadImageScreenState extends State<UploadImageScreen> {
     );
   }
 }
+

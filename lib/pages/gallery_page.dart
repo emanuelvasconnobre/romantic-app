@@ -1,9 +1,7 @@
+import 'package:romanticapp/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ayane/screens/gallery.screen.dart';
-import 'package:ayane/screens/upload_image_screen.dart';
-
-import '../bloc/auth_bloc.dart';
+import 'package:romanticapp/screens/gallery.screen.dart';
+import 'package:romanticapp/screens/upload_image_screen.dart';
 
 class GalleryPage extends StatelessWidget {
   final GlobalKey<NavigatorState> navigatorKey;
@@ -12,10 +10,8 @@ class GalleryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AuthBloc authBloc = BlocProvider.of<AuthBloc>(context);
-
     return DefaultTabController(
-        length: 2,
+        length: 3,
         child: Scaffold(
           appBar: AppBar(
             automaticallyImplyLeading: false,
@@ -26,24 +22,13 @@ class GalleryPage extends StatelessWidget {
               },
             ),
             title: const Text('Romantic App'),
-            actions: <Widget>[
-              IconButton(
-                icon: const Icon(Icons.logout),
-                onPressed: () async {
-                  await authBloc.logOut();
-
-                  if (!authBloc.isLoggedIn) {
-                    navigatorKey.currentState?.pushNamed('/');
-                  }
-                },
-              ),
-            ],
           ),
           body: TabBarView(
             children: [
               GalleryScreen(navigatorKey: navigatorKey, parentContext: context),
               UploadImageScreen(
                   navigatorKey: navigatorKey, parentContext: context),
+              ProfileScreen(navigatorKey: navigatorKey, parentContext: context),
             ],
           ),
           bottomNavigationBar: Container(
@@ -52,6 +37,7 @@ class GalleryPage extends StatelessWidget {
                 tabs: [
                   Tab(icon: Icon(Icons.image), text: 'Galeria'),
                   Tab(icon: Icon(Icons.add_a_photo), text: 'Adicionar'),
+                  Tab(icon: Icon(Icons.person), text: 'Perfil'),
                 ],
               )),
         ));

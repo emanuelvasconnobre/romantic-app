@@ -1,4 +1,4 @@
-import 'package:ayane/utils/result_helper/result.dart';
+import 'package:romanticapp/utils/result_helper/result.dart';
 
 class AppException implements Exception {
   final String message;
@@ -14,6 +14,11 @@ class AppException implements Exception {
       List<String>? issues,
       this.type})
       : issues = issues ?? [];
+
+  @override
+  String toString() {
+    return 'AppException: { title: $title, message: $message, stack: $stack, issues: $issues, type: $type }';
+  }
 
   getResultMessage() {
     final definedType = type ?? ResultMessageType.danger;

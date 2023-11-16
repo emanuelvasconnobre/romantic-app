@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ayane/provider/utils/is_authenticed.dart';
+import 'package:romanticapp/provider/utils/is_authenticed.dart';
 
 class IsAuthenticatedRoute extends StatelessWidget {
   final Widget page;

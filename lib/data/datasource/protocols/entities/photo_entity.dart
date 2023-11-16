@@ -1,6 +1,6 @@
-import 'package:ayane/data/datasource/protocols/entities/user_entity.dart';
-import 'package:ayane/utils/exceptions/intance_exception.dart';
-import 'package:ayane/utils/exceptions/protocols/app_exception.dart';
+import 'package:romanticapp/data/datasource/protocols/entities/user_entity.dart';
+import 'package:romanticapp/utils/exceptions/intance_exception.dart';
+import 'package:romanticapp/utils/exceptions/protocols/app_exception.dart';
 
 class PhotoEntity {
   String id;

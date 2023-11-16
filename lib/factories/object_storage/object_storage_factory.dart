@@ -1,5 +1,5 @@
-import 'package:ayane/data/object_storage/dummy/dummy_object_storage.dart';
-import 'package:ayane/data/object_storage/firebase/firebase_object_storage.dart';
+import 'package:romanticapp/data/object_storage/dummy/dummy_object_storage.dart';
+import 'package:romanticapp/data/object_storage/firebase/firebase_object_storage.dart';
 
 import '../../data/object_storage/protocols/object_storage.dart';
 

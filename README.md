@@ -1,6 +1,6 @@
-# projects
+# romanticapp
 
-Um projeto de teste
+Romantic APP
 
 ## Getting Started
 

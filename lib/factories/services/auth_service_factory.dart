@@ -1,6 +1,6 @@
-import 'package:ayane/data/auth/dummy/dummy_authentication_module.dart';
-import 'package:ayane/data/auth/firebase/firebase_authentication_module.dart';
-import 'package:ayane/data/service/auth/auth_service.dart';
+import 'package:romanticapp/data/auth/dummy/dummy_authentication_module.dart';
+import 'package:romanticapp/data/auth/firebase/firebase_authentication_module.dart';
+import 'package:romanticapp/data/service/auth/auth_service.dart';
 
 class AuthServiceFactory {
   static AuthService? authServiceInstance;
