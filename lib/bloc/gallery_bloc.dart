@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:romanticapp/config/constants.dart';
 import 'package:romanticapp/data/datasource/protocols/entities/photo_entity.dart';
 import 'package:romanticapp/data/service/photo/photo_service.dart';
@@ -67,10 +69,30 @@ class GalleryBloc extends Cubit<GalleryBlocState> {
   removeOnePhoto(String id) async {
     final targetList = state.photos;
 
+    Fluttertoast.showToast(
+        msg: "Deletando...",
+        toastLength: Toast.LENGTH_SHORT, // Duração do Toast
+        gravity: ToastGravity.BOTTOM, // Posição do Toast na tela
+        timeInSecForIosWeb: 1, // Duração específica para iOS
+        backgroundColor: Colors.blue, // Cor de fundo do Toast
+        textColor: Colors.white, // Cor do texto do Toast
+        fontSize: 16.0 // Tamanho da fonte do texto do Toast
+    );
+
     var result = await _photoService.deleteOne(id);
 
     if (result is Success) {
       targetList.removeWhere((element) => element.id == id);
+
+      Fluttertoast.showToast(
+          msg: result.message.message,
+          toastLength: Toast.LENGTH_SHORT, // Duração do Toast
+          gravity: ToastGravity.BOTTOM, // Posição do Toast na tela
+          timeInSecForIosWeb: 1, // Duração específica para iOS
+          backgroundColor: Colors.green, // Cor de fundo do Toast
+          textColor: Colors.white, // Cor do texto do Toast
+          fontSize: 16.0 // Tamanho da fonte do texto do Toast
+      );
 
       emit(GalleryBlocState(
         photos: targetList,

@@ -53,7 +53,9 @@ class PhotoService {
         throw UnexpectedException();
       }
 
+      await photoDatasource.deleteOne(id);
       await objectStorage.deleteOne(entity.fileName);
+
       return Success(data: null);
     } on AppException catch (e) {
       return Failure(e);
