@@ -78,7 +78,7 @@ class AuthBloc extends Cubit<AuthBlocState> {
     if (result is Success) {
       UserEntity newUser = UserEntity.copy(state.user!);
       if (input.name != null) newUser.name = input.name!;
-      if (input.bio != null) newUser.name = input.bio!;
+      if (input.bio != null) newUser.bio = input.bio!;
       if (result.data?.profilePictureUrl != null) newUser.profilePictureUrl = result.data!.profilePictureUrl!;
       emit(AuthBlocState(user: newUser, auth: state.auth));
     } else {
