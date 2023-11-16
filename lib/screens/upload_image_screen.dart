@@ -77,6 +77,7 @@ class _UploadImageScreenState extends State<UploadImageScreen> {
           children: <Widget>[
             TextFormField(
               controller: _descriptionController,
+              enabled: !_isLoading,
               decoration: const InputDecoration(
                 labelText: 'Descrição',
               ),
