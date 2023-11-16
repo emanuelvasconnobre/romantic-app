@@ -6,24 +6,29 @@ import 'package:romanticapp/widgets/gallery/view_photo_info.dart';
 
 class ViewPhotoScreen extends StatelessWidget {
   final int initialIndex;
-  final BuildContext context;
+  final BuildContext parentContext;
   final PageController _controller;
+  final GlobalKey<NavigatorState> navigatorKey;
 
-  ViewPhotoScreen(this.initialIndex, this.context, {super.key})
+  ViewPhotoScreen(
+      {required this.initialIndex,
+      required this.parentContext,
+      super.key,
+      required this.navigatorKey})
       : _controller = PageController(
           initialPage: initialIndex,
         );
 
   @override
   Widget build(BuildContext context) {
-    final galleryBloc = BlocProvider.of<GalleryBloc>(this.context);
+    final galleryBloc = BlocProvider.of<GalleryBloc>(parentContext);
 
     if (galleryBloc.state.photos.length == 1) {
       galleryBloc.addPage();
     }
 
     return Container(
-        height: MediaQuery.of(this.context).size.height,
+        height: MediaQuery.of(parentContext).size.height,
         decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
@@ -41,7 +46,7 @@ class ViewPhotoScreen extends StatelessWidget {
                   IconButton(
                     icon: const Icon(Icons.arrow_back),
                     onPressed: () {
-                      Navigator.of(this.context).pop();
+                      Navigator.of(parentContext).pop();
                     },
                   ),
                   const SizedBox(width: 40),
@@ -51,7 +56,7 @@ class ViewPhotoScreen extends StatelessWidget {
             Expanded(
               child: Center(
                 child: GalleryBlocBuilder(
-                  context: this.context,
+                  context: parentContext,
                   builder: (context, state) {
                     return PageView.builder(
                         controller: _controller,
@@ -62,10 +67,37 @@ class ViewPhotoScreen extends StatelessWidget {
                           }
                         },
                         itemBuilder: (BuildContext context, int index) {
-                          return Image.network(
-                            state.photos[index].imageUrl,
-                            fit: BoxFit.contain,
-                          );
+                          return Center(
+                              child: Stack(alignment: Alignment.center,
+                              children: [
+                                Container(
+                                  color: Colors.black87, // Cor do plano de fundo
+                                  width: double.infinity,
+                                  height: double.infinity,
+                                ),
+                            Image.network(
+                              state.photos[index].imageUrl,
+                              width: double.infinity,
+                              height: double.infinity,
+                              fit: BoxFit.contain,
+                            ),
+                            Positioned(
+                                bottom: 80.0,
+                                width: 350.0,
+                                child: Text(
+                                  state.photos[index].description,
+                                  style: const TextStyle(
+                                    backgroundColor: Colors.black87,
+                                    color: Colors.white,
+                                    fontSize: 24.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  maxLines: 3,
+                                  overflow: TextOverflow.ellipsis,
+                                  textAlign: TextAlign.center,
+                                  softWrap: true,
+                                ))
+                          ]));
                         });
                   },
                 ),
@@ -100,11 +132,16 @@ class ViewPhotoScreen extends StatelessWidget {
                   children: [
                     IconButton(
                       onPressed: () async {
-                        int currentIndex = _controller.page!.round();
+                        await _showConfirmationDialog(
+                          context,
+                          () async {
+                            int currentIndex = _controller.page!.round();
 
-                        String id =
-                            galleryBloc.state.photos[currentIndex].id;
-                        await galleryBloc.removeOnePhoto(id);
+                            String id =
+                                galleryBloc.state.photos[currentIndex].id;
+                            await galleryBloc.removeOnePhoto(id);
+                          },
+                        );
                       },
                       icon: const Icon(Icons.delete),
                     ),
@@ -129,6 +166,36 @@ class ViewPhotoScreen extends StatelessWidget {
       isScrollControlled: true,
       builder: (BuildContext context) {
         return ViewPhotoInfo(photoEntity: photoEntity);
+      },
+    );
+  }
+
+  Future<void> _showConfirmationDialog(
+    BuildContext context,
+    Future<void> Function() onPressed,
+  ) async {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Confirmação de Exclusão'),
+          content: const Text('Tem certeza de que deseja excluir esta imagem?'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Fechar o modal
+              },
+              child: const Text('Cancelar'),
+            ),
+            ElevatedButton(
+              onPressed: () async {
+                await onPressed();
+                navigatorKey.currentState?.pop();
+              },
+              child: const Text('Confirmar'),
+            ),
+          ],
+        );
       },
     );
   }
