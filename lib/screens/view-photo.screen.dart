@@ -67,10 +67,37 @@ class ViewPhotoScreen extends StatelessWidget {
                           }
                         },
                         itemBuilder: (BuildContext context, int index) {
-                          return Image.network(
-                            state.photos[index].imageUrl,
-                            fit: BoxFit.contain,
-                          );
+                          return Center(
+                              child: Stack(alignment: Alignment.center,
+                              children: [
+                                Container(
+                                  color: Colors.black87, // Cor do plano de fundo
+                                  width: double.infinity,
+                                  height: double.infinity,
+                                ),
+                            Image.network(
+                              state.photos[index].imageUrl,
+                              width: double.infinity,
+                              height: double.infinity,
+                              fit: BoxFit.contain,
+                            ),
+                            Positioned(
+                                bottom: 80.0,
+                                width: 350.0,
+                                child: Text(
+                                  state.photos[index].description,
+                                  style: const TextStyle(
+                                    backgroundColor: Colors.black87,
+                                    color: Colors.white,
+                                    fontSize: 24.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  maxLines: 3,
+                                  overflow: TextOverflow.ellipsis,
+                                  textAlign: TextAlign.center,
+                                  softWrap: true,
+                                ))
+                          ]));
                         });
                   },
                 ),
