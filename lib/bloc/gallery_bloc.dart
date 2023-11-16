@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:romanticapp/config/constants.dart';
 import 'package:romanticapp/data/datasource/protocols/entities/photo_entity.dart';
 import 'package:romanticapp/data/service/photo/photo_service.dart';
 import 'package:romanticapp/data/service/photo/protocols/create_one_service_input.dart';
@@ -13,7 +14,7 @@ GalleryBloc getGalleryBloc(BuildContext context) {
 class GalleryBlocState {
   final List<PhotoEntity> photos;
   final int page;
-  final int countPerPage = 2;
+  final int countPerPage = PHOTO_COUNT_PER_PAGE;
   final int countPage;
 
   GalleryBlocState(
@@ -28,7 +29,7 @@ class GalleryBloc extends Cubit<GalleryBlocState> {
   }
 
   void initializer() async {
-    var result = await _photoService.getList(page: 1, countPerPage: 2);
+    var result = await _photoService.getList(page: 1, countPerPage: PHOTO_COUNT_PER_PAGE);
 
     if (result is Success) {
       emit(GalleryBlocState(

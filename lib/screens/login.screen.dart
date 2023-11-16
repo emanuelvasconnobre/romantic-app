@@ -101,11 +101,13 @@ class LoginScreenState extends State<LoginScreen> {
             children: <Widget>[
               TextFormField(
                 controller: emailController,
+                enabled: !_isLoading,
                 validator: _validateEmail,
                 decoration: const InputDecoration(labelText: 'Email'),
               ),
               TextFormField(
                 controller: passwordController,
+                enabled: !_isLoading,
                 validator: _validatePassword,
                 obscureText: true,
                 decoration: const InputDecoration(labelText: 'Senha'),
