@@ -4,6 +4,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:romanticapp/bloc/auth_bloc.dart';
 import 'package:romanticapp/bloc/gallery_bloc.dart';
 import 'package:romanticapp/data/service/photo/protocols/create_one_service_input.dart';
+import 'package:romanticapp/utils/app_color.dart';
 
 class UploadImageScreen extends StatefulWidget {
   final GlobalKey<NavigatorState> navigatorKey;
@@ -91,15 +92,18 @@ class _UploadImageScreenState extends State<UploadImageScreen> {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: getImage,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColor.primaryBgColor,
+              ),
               child: const Text('Selecionar Imagem'),
             ),
             const SizedBox(height: 10),
             _image != null
                 ? Image.file(
-              fit: BoxFit.contain,
-              _image!,
-              height: 150,
-            )
+                    fit: BoxFit.contain,
+                    _image!,
+                    height: 150,
+                  )
                 : Container(),
             const SizedBox(height: 20),
             Row(
@@ -109,6 +113,9 @@ class _UploadImageScreenState extends State<UploadImageScreen> {
                 const SizedBox(width: 20),
                 ElevatedButton(
                   onPressed: _submitForm,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColor.primaryBgColor,
+                  ),
                   child: const Text('Enviar'),
                 ),
               ],
@@ -119,4 +126,3 @@ class _UploadImageScreenState extends State<UploadImageScreen> {
     );
   }
 }
-

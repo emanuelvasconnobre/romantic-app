@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:romanticapp/utils/app_color.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class AppLink extends StatelessWidget {
@@ -22,9 +23,9 @@ class AppLink extends StatelessWidget {
       child: Text(
         text,
         style: style ?? const TextStyle(
-          color: Colors.blue,
-          decoration: TextDecoration.underline,
-        ),
+              color: AppColor.primaryBgColor,
+              decoration: TextDecoration.underline,
+            ),
       ),
     );
   }

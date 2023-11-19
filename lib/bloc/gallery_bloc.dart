@@ -7,6 +7,7 @@ import 'package:romanticapp/data/datasource/protocols/entities/photo_entity.dart
 import 'package:romanticapp/data/service/photo/photo_service.dart';
 import 'package:romanticapp/data/service/photo/protocols/create_one_service_input.dart';
 import 'package:romanticapp/factories/services/photo_service_factory.dart';
+import 'package:romanticapp/utils/app_color.dart';
 import 'package:romanticapp/utils/result_helper/result.dart';
 
 GalleryBloc getGalleryBloc(BuildContext context) {
@@ -74,10 +75,10 @@ class GalleryBloc extends Cubit<GalleryBlocState> {
         toastLength: Toast.LENGTH_SHORT, // Duração do Toast
         gravity: ToastGravity.BOTTOM, // Posição do Toast na tela
         timeInSecForIosWeb: 1, // Duração específica para iOS
-        backgroundColor: Colors.blue, // Cor de fundo do Toast
+        backgroundColor: AppColor.primaryBgColor, // Cor de fundo do Toast
         textColor: Colors.white, // Cor do texto do Toast
         fontSize: 16.0 // Tamanho da fonte do texto do Toast
-    );
+        );
 
     var result = await _photoService.deleteOne(id);
 
@@ -92,7 +93,7 @@ class GalleryBloc extends Cubit<GalleryBlocState> {
           backgroundColor: Colors.green, // Cor de fundo do Toast
           textColor: Colors.white, // Cor do texto do Toast
           fontSize: 16.0 // Tamanho da fonte do texto do Toast
-      );
+          );
 
       emit(GalleryBlocState(
         photos: targetList,

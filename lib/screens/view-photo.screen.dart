@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:romanticapp/bloc/gallery_bloc.dart';
 import 'package:romanticapp/data/datasource/protocols/entities/photo_entity.dart';
+import 'package:romanticapp/utils/app_color.dart';
 import 'package:romanticapp/widgets/gallery/view_photo_info.dart';
 
 class ViewPhotoScreen extends StatelessWidget {
@@ -68,7 +69,7 @@ class ViewPhotoScreen extends StatelessWidget {
                         },
                         itemBuilder: (BuildContext context, int index) {
                           return Center(
-                              child: Stack(alignment: Alignment.center,
+                              child: Stack(alignment: Alignment.center, 
                               children: [
                                 Container(
                                   color: Colors.black87, // Cor do plano de fundo
@@ -185,6 +186,9 @@ class ViewPhotoScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.of(context).pop(); // Fechar o modal
               },
+              style: TextButton.styleFrom(
+                foregroundColor: AppColor.primaryFnColor,
+              ),
               child: const Text('Cancelar'),
             ),
             ElevatedButton(
@@ -192,6 +196,9 @@ class ViewPhotoScreen extends StatelessWidget {
                 await onPressed();
                 navigatorKey.currentState?.pop();
               },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColor.primaryBgColor,
+              ),
               child: const Text('Confirmar'),
             ),
           ],
