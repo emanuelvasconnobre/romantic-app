@@ -8,12 +8,12 @@ class DummyObjectStorage implements ObjectStorage {
     await Future.delayed(const Duration(seconds: 2));
 
     if (kDebugMode) {
-      print("Deletado");
+      print("Deleted");
     }
   }
 
   @override
-  Future<FileStoraged> uploadOne(File file, {String? fileName}) async {
+  Future<FileStoraged> uploadOne(File file, {String? fileName, String? path}) async {
     await Future.delayed(const Duration(seconds: 2));
 
     return FileStoraged(

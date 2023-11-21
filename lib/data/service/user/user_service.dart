@@ -6,6 +6,7 @@ import 'package:romanticapp/data/service/user/protocols/update_profile_service_i
 import 'package:romanticapp/data/service/user/protocols/update_profile_service_output.dart';
 import 'package:romanticapp/utils/exceptions/auth/user_data_missing_exception.dart';
 import 'package:romanticapp/utils/exceptions/protocols/app_exception.dart';
+import 'package:romanticapp/utils/get_file_extension.dart';
 import 'package:romanticapp/utils/result_helper/result.dart';
 
 import '../../datasource/protocols/user_datasource/user_datasource.dart';
@@ -45,9 +46,14 @@ class UserService {
     try {
       final datasourceInput = UpdateOneUserDatasourceInput(
           name: null, bio: null, profilePictureUrl: null);
+
       if (input.profilePicture != null) {
-        datasourceInput.profilePictureUrl =
-            (await objectStorage.uploadOne(input.profilePicture!)).imageUrl;
+        FileStoraged fileStored = await objectStorage.uploadOne(
+            input.profilePicture!,
+            fileName: "$uid.${getFileExtension(input.profilePicture!)}",
+            path: "users_pics");
+
+        datasourceInput.profilePictureUrl = fileStored.imageUrl;
       }
       if (input.name != null) datasourceInput.name = input.name!;
       if (input.bio != null) datasourceInput.bio = input.bio!;
