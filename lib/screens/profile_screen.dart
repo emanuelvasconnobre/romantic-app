@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:romanticapp/bloc/auth_bloc.dart';
 import 'package:romanticapp/screens/edit_profile_screen.dart';
+import 'package:romanticapp/utils/app_color.dart';
 
 class ProfileScreen extends StatefulWidget {
   final GlobalKey<NavigatorState> navigatorKey;
@@ -60,6 +61,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       margin: const EdgeInsets.only(right: 15.0),
                       child: CircleAvatar(
                         radius: 50.0,
+                        backgroundColor: AppColor.primaryBgColor,
                         backgroundImage: NetworkImage(state.user!
                             .profilePictureUrl), // Substitua pelo caminho da sua imagem de perfil
                       ),
@@ -87,6 +89,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 const SizedBox(height: 20.0),
                 ElevatedButton(
                   onPressed: profileEditOnPressHandler,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColor.primaryBgColor,
+                  ),
                   child: const Text('Dados de Perfil'),
                 ),
                 Expanded(
@@ -95,7 +100,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ElevatedButton(
                   onPressed: logOutOnPressHandler,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.red,
+                    backgroundColor: AppColor.secondaryBgColor,
                   ),
                   child: const Padding(
                     padding: EdgeInsets.all(10.0),

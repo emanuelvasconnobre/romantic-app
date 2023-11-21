@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:romanticapp/bloc/auth_bloc.dart';
+import 'package:romanticapp/utils/app_color.dart';
 import 'package:romanticapp/validation/composite.validation.dart';
 import 'package:romanticapp/validation/form/email.validation.dart';
 import 'package:romanticapp/validation/form/is_not_empty.validation.dart';
@@ -84,6 +85,7 @@ class LoginScreenState extends State<LoginScreen> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: const Text('Login'),
+        backgroundColor: AppColor.primaryBgColor,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -116,6 +118,9 @@ class LoginScreenState extends State<LoginScreen> {
                     onPressed: () {
                       _onSubmitHandler(context);
                     },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColor.primaryBgColor,
+                    ),
                     child: const Text('Enviar'),
                   ),
                 ],

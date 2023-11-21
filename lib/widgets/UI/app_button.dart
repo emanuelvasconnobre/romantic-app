@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:romanticapp/utils/app_color.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class AppButton extends StatelessWidget {
@@ -22,7 +23,7 @@ class AppButton extends StatelessWidget {
       style: style ??
           const ButtonStyle(
             alignment: Alignment.center,
-            backgroundColor: MaterialStatePropertyAll(Colors.blue),
+            backgroundColor: MaterialStatePropertyAll(AppColor.primaryBgColor),
             shape: MaterialStatePropertyAll(
               RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(30.0)),

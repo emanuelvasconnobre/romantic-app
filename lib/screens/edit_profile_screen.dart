@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:romanticapp/bloc/auth_bloc.dart';
 import 'package:romanticapp/data/service/user/protocols/update_profile_service_input.dart';
+import 'package:romanticapp/utils/app_color.dart';
 
 class EditProfileScreen extends StatefulWidget {
   final GlobalKey<NavigatorState> navigatorKey;
@@ -93,7 +94,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             ))
                         : CircleAvatar(
                             radius: 50.0,
-                            backgroundColor: Colors.blue,
+                            backgroundColor: AppColor.primaryBgColor,
                             child: ClipOval(
                               child: AspectRatio(
                                   aspectRatio: 1.5,
@@ -106,6 +107,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 const SizedBox(width: 10),
                 ElevatedButton(
                   onPressed: getImage,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColor.primaryBgColor,
+                  ),
                   child: const Text('Selecionar Imagem'),
                 ),
               ],
@@ -149,6 +153,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 const SizedBox(width: 20),
                 ElevatedButton(
                   onPressed: _submitForm,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColor.primaryBgColor,
+                  ),
                   child: const Text('Salvar'),
                 ),
               ],

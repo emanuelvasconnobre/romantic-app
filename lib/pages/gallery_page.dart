@@ -2,6 +2,7 @@ import 'package:romanticapp/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:romanticapp/screens/gallery.screen.dart';
 import 'package:romanticapp/screens/upload_image_screen.dart';
+import 'package:romanticapp/utils/app_color.dart';
 
 class GalleryPage extends StatelessWidget {
   final GlobalKey<NavigatorState> navigatorKey;
@@ -16,6 +17,7 @@ class GalleryPage extends StatelessWidget {
           appBar: AppBar(
             automaticallyImplyLeading: false,
             title: const Text('Romantic App'),
+            backgroundColor: AppColor.primaryBgColor,
           ),
           body: TabBarView(
             children: [
@@ -26,7 +28,7 @@ class GalleryPage extends StatelessWidget {
             ],
           ),
           bottomNavigationBar: Container(
-              color: Colors.blue,
+              color: AppColor.primaryBgColor,
               child: const TabBar(
                 tabs: [
                   Tab(icon: Icon(Icons.image), text: 'Galeria'),
