@@ -11,7 +11,7 @@ class FileStoraged {
 }
 
 abstract class ObjectStorage {
-  Future<FileStoraged> uploadOne(File file, {String? fileName});
+  Future<FileStoraged> uploadOne(File file, {String? fileName, String? path});
 
   Future<void> deleteOne(String fileName);
 }

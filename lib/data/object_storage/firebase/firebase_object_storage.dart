@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:romanticapp/data/object_storage/protocols/object_storage.dart';
 import 'package:romanticapp/utils/exceptions/unexpected_exception.dart';
+import 'package:romanticapp/utils/get_file_extension.dart';
 import 'package:romanticapp/utils/get_file_size.dart';
 import 'package:romanticapp/utils/get_random_filename.dart';
 
@@ -11,7 +12,7 @@ class FirebaseObjectStorage implements ObjectStorage {
   @override
   Future<void> deleteOne(String fileName) async {
     try {
-      Reference appDocDirectory = getGalleryFolderRef();
+      Reference appDocDirectory = getFolderRef();
       final fileToDelete = appDocDirectory.child(fileName);
 
       await fileToDelete.delete();
@@ -21,12 +22,13 @@ class FirebaseObjectStorage implements ObjectStorage {
   }
 
   @override
-  Future<FileStoraged> uploadOne(File file, {String? fileName}) async {
+  Future<FileStoraged> uploadOne(File file, {String? fileName, String? path}) async {
     try {
-      String randomFileName =
-          fileName ?? "${getRandomFileName()}.${file.path.split(".").last}";
+      String extension = getFileExtension(file);
+      String fileNameSelected =
+          fileName ?? "${getRandomFileName()}.$extension";
 
-      Reference folder = getGalleryFolderRef().child(randomFileName);
+      Reference folder = getFolderRef(path: path).child(fileNameSelected);
 
       UploadTask task = folder.putFile(file);
 
@@ -36,7 +38,7 @@ class FirebaseObjectStorage implements ObjectStorage {
 
       return FileStoraged(
           imageUrl: imageUrl,
-          fileName: randomFileName,
+          fileName: fileNameSelected,
           originalName: file.path.split("/").last,
           size: getFileSize(file));
     } catch (e) {
@@ -44,7 +46,7 @@ class FirebaseObjectStorage implements ObjectStorage {
     }
   }
 
-  Reference getGalleryFolderRef() {
-    return storage.ref("gallery_images");
+  Reference getFolderRef({String? path}) {
+    return storage.ref(path ?? "gallery_images");
   }
 }
