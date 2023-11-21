@@ -90,7 +90,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ElevatedButton(
                   onPressed: profileEditOnPressHandler,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColor.primaryBgColor,
+                    backgroundColor: AppColor.tertiaryBgColor,
                   ),
                   child: const Text('Dados de Perfil'),
                 ),

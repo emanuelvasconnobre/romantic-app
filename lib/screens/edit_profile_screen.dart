@@ -108,7 +108,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 ElevatedButton(
                   onPressed: getImage,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColor.primaryBgColor,
+                    backgroundColor: AppColor.tertiaryBgColor,
                   ),
                   child: const Text('Selecionar Imagem'),
                 ),
